@@ -13,7 +13,6 @@ import { IPC_ACTIONS, IPC_CHANNELS, IPC_MESSAGES } from 'utils/messages';
 import type {
   ConfigFilesWithModified,
   Creds,
-  LanguageMap,
   SelectFileOptions,
   SelectFileReturn,
   TemplateFile,
@@ -65,14 +64,6 @@ const ipc = {
 
   async getCreds() {
     return (await ipcRenderer.invoke(IPC_ACTIONS.GET_CREDS)) as Creds;
-  },
-
-  async getLanguageMap(code: string) {
-    return (await ipcRenderer.invoke(IPC_ACTIONS.GET_LANGUAGE_MAP, code)) as {
-      languageMap: LanguageMap;
-      success: boolean;
-      message: string;
-    };
   },
 
   async getTemplates(posTemplateWidth?: number): Promise<TemplateFile[]> {

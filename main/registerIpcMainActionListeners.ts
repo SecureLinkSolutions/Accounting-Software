@@ -17,7 +17,6 @@ import { Main } from '../main';
 import { DatabaseMethod } from '../utils/db/types';
 import { IPC_ACTIONS } from '../utils/messages';
 import { getUrlAndTokenString, sendError } from './contactMothership';
-import { getLanguageMap } from './getLanguageMap';
 import { getTemplates } from './getPrintTemplates';
 import { printHtmlDocument } from './printHtmlDocument';
 import {
@@ -166,18 +165,6 @@ export default function registerIpcMainActionListeners(main: Main) {
       emitMainProcessError(error);
     }
     main.checkedForUpdate = true;
-  });
-
-  ipcMain.handle(IPC_ACTIONS.GET_LANGUAGE_MAP, async (_, code: string) => {
-    const obj = { languageMap: {}, success: true, message: '' };
-    try {
-      obj.languageMap = await getLanguageMap(code);
-    } catch (err) {
-      obj.success = false;
-      obj.message = (err as Error).message;
-    }
-
-    return obj;
   });
 
   ipcMain.handle(
