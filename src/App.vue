@@ -9,8 +9,7 @@
       overflow-hidden
       antialiased
     "
-    :dir="languageDirection"
-    :language="language"
+    dir="ltr"
   >
     <WindowsTitleBar
       v-if="platform === 'Windows'"
@@ -45,9 +44,7 @@
   </div>
 </template>
 <script lang="ts">
-import { RTL_LANGUAGES } from 'fyo/utils/consts';
 import { ModelNameEnum } from 'models/types';
-import { systemLanguageRef } from 'src/utils/refs';
 import { defineComponent, provide, ref, Ref } from 'vue';
 import WindowsTitleBar from './components/WindowsTitleBar.vue';
 import { handleErrorWithDialog } from './errorHandling';
@@ -62,7 +59,6 @@ import { connectToDatabase, dbErrorActionSymbols } from './utils/db';
 import { initializeInstance } from './utils/initialization';
 import * as injectionKeys from './utils/injectionKeys';
 import { showDialog, showToast } from './utils/interactive';
-import { setLanguageMap } from './utils/language';
 import { updateConfigFiles } from './utils/misc';
 import { updatePrintTemplates } from './utils/printTemplates';
 import { Search } from './utils/search';
@@ -95,9 +91,7 @@ export default defineComponent({
     const keys = useKeys();
     const searcher: Ref<null | Search> = ref(null);
     const shortcuts = new Shortcuts(keys);
-    const languageDirection = ref(
-      getLanguageDirection(systemLanguageRef.value)
-    );
+    const languageDirection = ref<'ltr' | 'rtl'>('ltr');
 
     provide(injectionKeys.keysKey, keys);
     provide(injectionKeys.searcherKey, searcher);
@@ -129,16 +123,6 @@ export default defineComponent({
       darkMode: boolean | undefined;
     };
   },
-  computed: {
-    language(): string {
-      return systemLanguageRef.value;
-    },
-  },
-  watch: {
-    language(value: string) {
-      this.languageDirection = getLanguageDirection(value);
-    },
-  },
   async mounted() {
     await this.setInitialScreen();
     const darkMode = !!fyo.singles.SystemSettings?.darkMode;
@@ -164,7 +148,6 @@ export default defineComponent({
       await this.searcher.initializeKeywords();
     },
     async setDesk(filePath: string): Promise<void> {
-      await setLanguageMap();
       this.activeScreen = Screen.Desk;
       await this.setDeskRoute();
       await fyo.telemetry.start(true);
@@ -322,7 +305,4 @@ export default defineComponent({
   },
 });
 
-function getLanguageDirection(language: string): 'rtl' | 'ltr' {
-  return RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
-}
 </script>

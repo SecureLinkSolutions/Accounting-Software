@@ -213,12 +213,12 @@
       </div>
       <hr v-if="files?.length" class="dark:border-gray-800" />
 
-      <!-- Language Selector -->
+      <!-- Create Demo Button -->
       <div
         class="
           w-full
           flex
-          justify-between
+          justify-end
           items-center
           absolute
           p-4
@@ -227,7 +227,6 @@
         "
         style="top: 100%; transform: translateY(-100%)"
       >
-        <LanguageSelector v-show="!creatingDemo" class="text-sm w-28" />
         <button
           v-if="files?.length"
           class="
@@ -312,7 +311,6 @@ import { t } from 'fyo';
 import { Verb } from 'fyo/telemetry/types';
 import { DateTime } from 'luxon';
 import Button from 'src/components/Button.vue';
-import LanguageSelector from 'src/components/Controls/LanguageSelector.vue';
 import FeatherIcon from 'src/components/FeatherIcon.vue';
 import Loading from 'src/components/Loading.vue';
 import Modal from 'src/components/Modal.vue';
@@ -326,7 +324,6 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'DatabaseSelector',
   components: {
-    LanguageSelector,
     Loading,
     FeatherIcon,
     Modal,
