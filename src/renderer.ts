@@ -10,15 +10,9 @@ import { outsideClickDirective } from './renderer/helpers';
 import registerIpcRendererListeners from './renderer/registerIpcRendererListeners';
 import router from './router';
 import { stringifyCircular } from './utils';
-import { setLanguageMap } from './utils/language';
-
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 (async () => {
-  const language = fyo.config.get('language') as string;
-  if (language) {
-    await setLanguageMap(language);
-  }
-  fyo.store.language = language || 'English';
+  fyo.store.language = 'English';
 
   registerIpcRendererListeners();
   const { isDevelopment, platform, version } = await ipc.getEnv();
