@@ -1,4 +1,3 @@
-import { DefaultCashDenominations } from 'models/inventory/Point of Sale/DefaultCashDenominations';
 import { Doc } from 'fyo/model/doc';
 import { FiltersMap, HiddenMap } from 'fyo/model/types';
 import { ModelNameEnum } from 'models/types';
@@ -32,26 +31,12 @@ export class Defaults extends Doc {
   // Print Templates
   salesQuotePrintTemplate?: string;
   salesInvoicePrintTemplate?: string;
-  posPrintTemplate?: string;
   purchaseInvoicePrintTemplate?: string;
   journalEntryPrintTemplate?: string;
   paymentPrintTemplate?: string;
   shipmentPrintTemplate?: string;
   purchaseReceiptPrintTemplate?: string;
   stockMovementPrintTemplate?: string;
-
-  // Point of Sale
-  posCashDenominations?: DefaultCashDenominations[];
-  posCustomer?: string;
-
-  //Buttons
-  saveButtonColour?: string;
-  submitButtonColour?: string;
-  cancelButtonColour?: string;
-  heldButtonColour?: string;
-  returnButtonColour?: string;
-  payButtonColour?: string;
-  payAndPrintButtonColour?: string;
 
   static commonFilters = {
     // Auto Payments
@@ -85,7 +70,6 @@ export class Defaults extends Doc {
     // Print Templates
     salesQuotePrintTemplate: () => ({ type: ModelNameEnum.SalesQuote }),
     salesInvoicePrintTemplate: () => ({ type: ModelNameEnum.SalesInvoice }),
-    posPrintTemplate: () => ({ type: ModelNameEnum.SalesInvoice }),
     purchaseInvoicePrintTemplate: () => ({
       type: ModelNameEnum.PurchaseInvoice,
     }),
@@ -96,7 +80,6 @@ export class Defaults extends Doc {
       type: ModelNameEnum.PurchaseReceipt,
     }),
     stockMovementPrintTemplate: () => ({ type: ModelNameEnum.StockMovement }),
-    posCustomer: () => ({ role: PartyRoleEnum.Customer }),
   };
 
   static filters: FiltersMap = this.commonFilters;
@@ -104,10 +87,6 @@ export class Defaults extends Doc {
 
   getInventoryHidden() {
     return () => !this.fyo.singles.AccountingSettings?.enableInventory;
-  }
-
-  getPointOfSaleHidden() {
-    return () => !this.fyo.singles.InventorySettings?.enablePointOfSale;
   }
 
   hidden: HiddenMap = {
@@ -119,15 +98,6 @@ export class Defaults extends Doc {
     shipmentPrintTemplate: this.getInventoryHidden(),
     purchaseReceiptPrintTemplate: this.getInventoryHidden(),
     stockMovementPrintTemplate: this.getInventoryHidden(),
-    posCashDenominations: this.getPointOfSaleHidden(),
-    posCustomer: this.getPointOfSaleHidden(),
-    saveButtonColour: this.getPointOfSaleHidden(),
-    cancelButtonColour: this.getPointOfSaleHidden(),
-    submitButtonColour: this.getPointOfSaleHidden(),
-    heldButtonColour: this.getPointOfSaleHidden(),
-    returnButtonColour: this.getPointOfSaleHidden(),
-    payButtonColour: this.getPointOfSaleHidden(),
-    payAndPrintButtonColour: this.getPointOfSaleHidden(),
   };
 }
 
