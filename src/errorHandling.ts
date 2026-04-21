@@ -197,7 +197,6 @@ function getFeatureFlags(): string[] {
       name: 'Accounting',
       flags: getBooleanFields(ModelNameEnum.AccountingSettings),
     },
-    { name: 'POS', flags: getBooleanFields(ModelNameEnum.POSSettings) },
     {
       name: 'Inventory',
       flags: getBooleanFields(ModelNameEnum.InventorySettings),

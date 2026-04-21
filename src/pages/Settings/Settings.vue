@@ -128,8 +128,6 @@ export default defineComponent({
         ModelNameEnum.AccountingSettings,
         ModelNameEnum.InventorySettings,
         ModelNameEnum.Defaults,
-        ModelNameEnum.POSSettings,
-        ModelNameEnum.ERPNextSyncSettings,
         ModelNameEnum.PrintSettings,
         ModelNameEnum.SystemSettings,
       ].some((s) => this.fyo.singles[s]?.canSave);
@@ -148,37 +146,22 @@ export default defineComponent({
         [ModelNameEnum.PrintSettings]: this.t`Print`,
         [ModelNameEnum.InventorySettings]: this.t`Inventory`,
         [ModelNameEnum.Defaults]: this.t`Defaults`,
-        [ModelNameEnum.POSSettings]: this.t`POS Settings`,
-        [ModelNameEnum.ERPNextSyncSettings]: this.t`ERPNext Sync`,
         [ModelNameEnum.SystemSettings]: this.t`System`,
       };
     },
     schemas(): Schema[] {
       const enableInventory =
         !!this.fyo.singles.AccountingSettings?.enableInventory;
-      const enablePOS = !!this.fyo.singles.InventorySettings?.enablePointOfSale;
-      const enableERPNextSync =
-        !!this.fyo.singles.AccountingSettings?.enableERPNextSync;
 
       return [
         ModelNameEnum.AccountingSettings,
         ModelNameEnum.InventorySettings,
         ModelNameEnum.Defaults,
-        ModelNameEnum.POSSettings,
-        ModelNameEnum.ERPNextSyncSettings,
         ModelNameEnum.PrintSettings,
         ModelNameEnum.SystemSettings,
       ]
         .filter((s) => {
           if (s === ModelNameEnum.InventorySettings && !enableInventory) {
-            return false;
-          }
-
-          if (s === ModelNameEnum.POSSettings && !enablePOS) {
-            return false;
-          }
-
-          if (s === ModelNameEnum.ERPNextSyncSettings && !enableERPNextSync) {
             return false;
           }
 
