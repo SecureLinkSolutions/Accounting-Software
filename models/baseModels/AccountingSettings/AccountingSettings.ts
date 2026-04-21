@@ -24,7 +24,6 @@ export class AccountingSettings extends Doc {
   enableLoyaltyProgram?: boolean;
   enablePricingRule?: boolean;
   enaenableItemEnquiry?: boolean;
-  enableERPNextSync?: boolean;
   enablePointOfSaleWithOutInventory?: boolean;
   enablePartialPayment?: boolean;
   enableitemGroup?: boolean;
@@ -61,9 +60,6 @@ export class AccountingSettings extends Doc {
     },
     enableLead: () => {
       return !!this.enableLead;
-    },
-    enableERPNextSync: () => {
-      return !!this.enableERPNextSync;
     },
     enableInvoiceReturns: () => {
       return !!this.enableInvoiceReturns;

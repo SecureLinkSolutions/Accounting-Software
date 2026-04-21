@@ -24,14 +24,11 @@ export enum IPC_ACTIONS {
   PRINT_HTML_DOCUMENT = 'print-html-document',
   SAVE_DATA = 'save-data',
   SHOW_ERROR = 'show-error',
-  SEND_ERROR = 'send-error',
   CHECK_FOR_UPDATES = 'check-for-updates',
   CHECK_DB_ACCESS = 'check-db-access',
   SELECT_FILE = 'select-file',
-  GET_CREDS = 'get-creds',
   GET_DB_LIST = 'get-db-list',
   GET_TEMPLATES = 'get-templates',
-  INIT_SHEDULER = 'init-scheduler',
   DELETE_FILE = 'delete-file',
   GET_DB_DEFAULT_PATH = 'get-db-default-path',
   SEND_API_REQUEST = 'send-api-request',
@@ -45,7 +42,6 @@ export enum IPC_ACTIONS {
 
 // ipcMain.send(...)
 export enum IPC_CHANNELS {
-  TRIGGER_ERPNEXT_SYNC = 'trigger-erpnext-sync',
   LOG_MAIN_PROCESS_ERROR = 'main-process-error',
   CONSOLE_LOG = 'console-log',
 }
