@@ -1,6 +1,5 @@
 import { handleError } from 'src/errorHandling';
 import { fyo } from 'src/initFyo';
-import { syncDocumentsToERPNext } from 'src/utils/erpnextSync';
 
 export default function registerIpcRendererListeners() {
   ipc.registerMainProcessErrorListener(
@@ -25,33 +24,10 @@ export default function registerIpcRendererListeners() {
     }
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  ipc.registerTriggerFrontendActionListener(async () => {
-    await syncDocumentsToERPNext(fyo);
-  });
-
   ipc.registerConsoleLogListener((_, ...stuff: unknown[]) => {
-    if (!fyo.store.isDevelopment) {
-      return;
-    }
-
     if (fyo.store.isDevelopment) {
       // eslint-disable-next-line no-console
       console.log(...stuff);
     }
-  });
-
-  document.addEventListener('visibilitychange', () => {
-    const { visibilityState } = document;
-    if (visibilityState === 'visible' && !fyo.telemetry.started) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      fyo.telemetry.start();
-    }
-
-    if (visibilityState !== 'hidden') {
-      return;
-    }
-
-    fyo.telemetry.stop();
   });
 }
