@@ -101,16 +101,6 @@ function getInventorySidebar(): SidebarRoot[] {
   ];
 }
 
-function getPOSSidebar() {
-  return {
-    label: t`POS`,
-    name: 'pos',
-    route: '/pos',
-    icon: 'pos',
-    hidden: () => !fyo.singles.InventorySettings?.enablePointOfSale,
-  };
-}
-
 function getReportSidebar() {
   return {
     label: t`Reports`,
@@ -300,7 +290,6 @@ function getCompleteSidebar(): SidebarConfig {
     },
     getReportSidebar(),
     getInventorySidebar(),
-    getPOSSidebar(),
     getRegionalSidebar(),
     {
       label: t`Setup`,
@@ -332,7 +321,6 @@ function getCompleteSidebar(): SidebarConfig {
         {
           label: t`Customize Form`,
           name: 'customize-form',
-          // route: `/customize-form`,
           route: `/list/CustomForm/${t`Customize Form`}`,
           hidden: () =>
             !fyo.singles.AccountingSettings?.enableFormCustomization,

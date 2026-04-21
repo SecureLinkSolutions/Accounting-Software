@@ -66,17 +66,6 @@ import base from './meta/base.json';
 import child from './meta/child.json';
 import submittable from './meta/submittable.json';
 import tree from './meta/tree.json';
-import CashDenominations from './app/inventory/Point of Sale/CashDenominations.json';
-import ClosingAmounts from './app/inventory/Point of Sale/ClosingAmounts.json';
-import ClosingCash from './app/inventory/Point of Sale/ClosingCash.json';
-import DefaultCashDenominations from './app/inventory/Point of Sale/DefaultCashDenominations.json';
-import OpeningAmounts from './app/inventory/Point of Sale/OpeningAmounts.json';
-import OpeningCash from './app/inventory/Point of Sale/OpeningCash.json';
-import POSSettings from './app/inventory/Point of Sale/POSSettings.json';
-import POSProfile from './app/POSProfile.json';
-import POSOpeningShift from './app/inventory/Point of Sale/POSOpeningShift.json';
-import POSClosingShift from './app/inventory/Point of Sale/POSClosingShift.json';
-import POSShiftAmounts from './app/inventory/Point of Sale/POSShiftAmounts.json';
 import ItemGroup from './app/ItemGroup.json';
 import { Schema, SchemaStub } from './types';
 import ItemEnquiry from './app/ItemEnquiry.json';
@@ -174,17 +163,5 @@ export const appSchemas: Schema[] | SchemaStub[] = [
 
   CustomForm as Schema,
   CustomField as Schema,
-
-  CashDenominations as Schema,
-  ClosingAmounts as Schema,
-  ClosingCash as Schema,
-  DefaultCashDenominations as Schema,
-  OpeningAmounts as Schema,
-  OpeningCash as Schema,
-  POSSettings as Schema,
-  POSProfile as Schema,
-  POSOpeningShift as Schema,
-  POSClosingShift as Schema,
-  POSShiftAmounts as Schema,
 
 ];
