@@ -15,34 +15,13 @@ function shouldNotStore(error: Error) {
   return !shouldLog;
 }
 
-export async function sendError(errorLogObj: ErrorLog) {
+export function sendError(errorLogObj: ErrorLog) {
   if (!errorLogObj.stack) {
     return;
   }
 
-  errorLogObj.more ??= {};
-  errorLogObj.more.path ??= router.currentRoute.value.fullPath;
-
-  const body = {
-    error_name: errorLogObj.name,
-    message: errorLogObj.message,
-    stack: errorLogObj.stack,
-    platform: fyo.store.platform,
-    version: fyo.store.appVersion,
-    language: fyo.store.language,
-    instance_id: fyo.store.instanceId,
-    device_id: fyo.store.deviceId,
-    open_count: fyo.store.openCount,
-    country_code: fyo.singles.SystemSettings?.countryCode,
-    more: stringifyCircular(errorLogObj.more),
-  };
-
-  if (fyo.store.isDevelopment) {
-    // eslint-disable-next-line no-console
-    console.log('sendError', body);
-  }
-
-  await ipc.sendError(JSON.stringify(body));
+  // eslint-disable-next-line no-console
+  console.error('[Error]', errorLogObj.name, errorLogObj.message);
 }
 
 function getToastProps(errorLogObj: ErrorLog) {
@@ -88,7 +67,7 @@ export async function handleError(
   }
 
   const errorLogObj = getErrorLogObject(error, more);
-  await sendError(errorLogObj);
+  sendError(errorLogObj);
 
   if (notifyUser) {
     const toastProps = getToastProps(errorLogObj);
