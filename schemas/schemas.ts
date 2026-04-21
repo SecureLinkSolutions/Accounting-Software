@@ -77,10 +77,6 @@ import POSProfile from './app/POSProfile.json';
 import POSOpeningShift from './app/inventory/Point of Sale/POSOpeningShift.json';
 import POSClosingShift from './app/inventory/Point of Sale/POSClosingShift.json';
 import POSShiftAmounts from './app/inventory/Point of Sale/POSShiftAmounts.json';
-import ERPNextSyncSettings from './app/ERPNextSyncSettings.json';
-import ERPNextSyncQueue from './app/ERPNextSyncQueue.json';
-import FetchFromERPNextQueue from './app/FetchFromERPNextQueue.json';
-import IntegrationErrorLog from './app/IntegrationErrorLog.json';
 import ItemGroup from './app/ItemGroup.json';
 import { Schema, SchemaStub } from './types';
 import ItemEnquiry from './app/ItemEnquiry.json';
@@ -191,9 +187,4 @@ export const appSchemas: Schema[] | SchemaStub[] = [
   POSClosingShift as Schema,
   POSShiftAmounts as Schema,
 
-  ERPNextSyncSettings as Schema,
-  ERPNextSyncQueue as Schema,
-  FetchFromERPNextQueue as Schema,
-
-  IntegrationErrorLog as Schema,
 ];
