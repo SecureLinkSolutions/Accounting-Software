@@ -33,8 +33,31 @@ export class Item extends Doc {
   serialNumberSeries?: string;
   datafromErp?: boolean;
   uomConversions: UOMConversionItem[] = [];
+  costPrice?: Money;
+  setPriceFromMargin?: boolean;
+  marginPercent?: number;
 
   formulas: FormulaMap = {
+    rate: {
+      formula: () => {
+        if (!this.setPriceFromMargin) return;
+        const cost = (this.costPrice as Money | undefined)?.float ?? 0;
+        const margin = this.marginPercent ?? 0;
+        if (margin >= 100) return this.fyo.pesa(0);
+        return this.fyo.pesa(cost / (1 - margin / 100));
+      },
+      dependsOn: ['costPrice', 'marginPercent', 'setPriceFromMargin'],
+    },
+    marginPercent: {
+      formula: () => {
+        if (this.setPriceFromMargin) return;
+        const rate = (this.rate as Money | undefined)?.float ?? 0;
+        const cost = (this.costPrice as Money | undefined)?.float ?? 0;
+        if (rate === 0) return 0;
+        return ((rate - cost) / rate) * 100;
+      },
+      dependsOn: ['rate', 'costPrice', 'setPriceFromMargin'],
+    },
     incomeAccount: {
       formula: async () => {
         let accountName = 'Service';
@@ -194,7 +217,7 @@ export class Item extends Doc {
       }
 
       const series = (value as string).trim();
-      const invalidChars = /[/\=\?\&\%]/;
+      const invalidChars = /[\/\=\?\&\%]/;
 
       if (invalidChars.test(series)) {
         throw new ValidationError(
@@ -209,7 +232,7 @@ export class Item extends Doc {
       }
 
       const series = (value as string).trim();
-      const invalidChars = /[/\=\?\&\%]/;
+      const invalidChars = /[\/\=\?\&\%]/;
 
       if (invalidChars.test(series)) {
         throw new ValidationError(
