@@ -128,6 +128,11 @@ function getReportSidebar() {
         name: 'trial-balance',
         route: '/report/TrialBalance',
       },
+      {
+        label: t`BAS`,
+        name: 'bas',
+        route: '/report/BAS',
+      },
     ],
   };
 }

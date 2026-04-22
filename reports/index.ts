@@ -1,4 +1,5 @@
 import { BalanceSheet } from './BalanceSheet/BalanceSheet';
+import { BAS } from './BusinessActivityStatement/BAS';
 import { GeneralLedger } from './GeneralLedger/GeneralLedger';
 import { GSTR1 } from './GoodsAndServiceTax/GSTR1';
 import { GSTR2 } from './GoodsAndServiceTax/GSTR2';
@@ -16,4 +17,5 @@ export const reports = {
   GSTR2,
   StockLedger,
   StockBalance,
+  BAS,
 } as const;
