@@ -59,6 +59,20 @@
       "section": "Items"
     },
     {
+      "fieldname": "totalProfit",
+      "label": "Total Profit",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "section": "Items"
+    },
+    {
+      "fieldname": "totalMarginPercent",
+      "label": "Total Margin %",
+      "fieldtype": "Float",
+      "readOnly": true,
+      "section": "Items"
+    },
+    {
       "fieldname": "taxes",
       "label": "Taxes",
       "fieldtype": "Table",

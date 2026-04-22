@@ -84,10 +84,30 @@
       "placeholder": "Unit Type"
     },
     {
+      "fieldname": "costPrice",
+      "label": "Cost Price",
+      "section": "Details",
+      "fieldtype": "Currency"
+    },
+    {
       "fieldname": "rate",
       "label": "Rate",
       "section": "Details",
       "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "setPriceFromMargin",
+      "label": "Set Price from Margin",
+      "section": "Details",
+      "fieldtype": "Check",
+      "default": false
+    },
+    {
+      "fieldname": "marginPercent",
+      "label": "Margin %",
+      "section": "Details",
+      "fieldtype": "Float",
+      "readOnly": false
     },
     {
       "fieldname": "description",

@@ -141,6 +141,26 @@
       "placeholder": "HSN/SAC Code"
     },
     {
+      "fieldname": "costPrice",
+      "label": "Cost Price",
+      "fieldtype": "Currency",
+      "hidden": true
+    },
+    {
+      "fieldname": "lineProfit",
+      "label": "Line Profit",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "computed": true
+    },
+    {
+      "fieldname": "lineMarginPercent",
+      "label": "Margin %",
+      "fieldtype": "Float",
+      "readOnly": true,
+      "computed": true
+    },
+    {
       "fieldname": "stockNotTransferred",
       "label": "Stock Not Transferred",
       "fieldtype": "Float",
