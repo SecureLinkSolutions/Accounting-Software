@@ -64,6 +64,10 @@ export abstract class InvoiceItem extends Doc {
 
   isFreeItem?: boolean;
 
+  costPrice?: Money;
+  lineProfit?: Money;
+  lineMarginPercent?: number;
+
   get isSales() {
     return (
       this.schemaName === 'SalesInvoiceItem' ||
@@ -468,6 +472,35 @@ export abstract class InvoiceItem extends Doc {
         return getTaxedTotalBeforeDiscounting(totalTaxRate, rate, quantity);
       },
       dependsOn: ['rate', 'quantity', 'item'],
+    },
+    costPrice: {
+      formula: async () => {
+        if (!this.item) return;
+        return (await this.fyo.getValue(
+          ModelNameEnum.Item,
+          this.item,
+          'costPrice'
+        )) as Money | undefined;
+      },
+      dependsOn: ['item'],
+    },
+    lineProfit: {
+      formula: () => {
+        const rate = (this.rate as Money | undefined)?.float ?? 0;
+        const cost = (this.costPrice as Money | undefined)?.float ?? 0;
+        const qty = this.quantity ?? 0;
+        return this.fyo.pesa((rate - cost) * qty);
+      },
+      dependsOn: ['rate', 'costPrice', 'quantity'],
+    },
+    lineMarginPercent: {
+      formula: () => {
+        const rate = (this.rate as Money | undefined)?.float ?? 0;
+        const cost = (this.costPrice as Money | undefined)?.float ?? 0;
+        if (rate === 0) return 0;
+        return ((rate - cost) / rate) * 100;
+      },
+      dependsOn: ['rate', 'costPrice'],
     },
     stockNotTransferred: {
       formula: async () => {

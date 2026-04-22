@@ -111,6 +111,9 @@ export abstract class Invoice extends Transactional {
   returnAgainst?: string;
   isFullyReturned?: boolean;
 
+  totalProfit?: Money;
+  totalMarginPercent?: number;
+
   pricingRuleDetail?: PricingRuleDetail[];
 
   get isSales() {
@@ -1274,6 +1277,25 @@ export abstract class Invoice extends Transactional {
         !!this.fyo.singles.AccountingSettings?.enableInventory &&
         !!this.autoStockTransferLocation,
       dependsOn: [],
+    },
+    totalProfit: {
+      formula: () => {
+        let profit = this.fyo.pesa(0);
+        for (const item of this.items ?? []) {
+          profit = profit.add(item.lineProfit ?? this.fyo.pesa(0));
+        }
+        return profit;
+      },
+      dependsOn: ['items'],
+    },
+    totalMarginPercent: {
+      formula: () => {
+        const netTotal = (this.netTotal as Money | undefined)?.float ?? 0;
+        const totalProfit = (this.totalProfit as Money | undefined)?.float ?? 0;
+        if (netTotal === 0) return 0;
+        return (totalProfit / netTotal) * 100;
+      },
+      dependsOn: ['totalProfit', 'netTotal'],
     },
     isPricingRuleApplied: {
       formula: async () => {
