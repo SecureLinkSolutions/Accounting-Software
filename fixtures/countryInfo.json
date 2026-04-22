@@ -1,0 +1,103 @@
+{
+  "Australia": {
+    "code": "au",
+    "currency": "AUD",
+    "currency_fraction": "Cent",
+    "currency_fraction_units": 100,
+    "smallest_currency_fraction_value": 0.01,
+    "currency_symbol": "$",
+    "timezones": [
+      "Australia/Sydney",
+      "Australia/Melbourne",
+      "Australia/Brisbane",
+      "Australia/Perth",
+      "Australia/Adelaide",
+      "Australia/Darwin",
+      "Australia/Hobart"
+    ],
+    "fiscal_year_start": "07-01",
+    "fiscal_year_end": "06-30",
+    "locale": "en-AU"
+  },
+  "New Zealand": {
+    "code": "nz",
+    "currency": "NZD",
+    "currency_fraction": "Cent",
+    "currency_fraction_units": 100,
+    "smallest_currency_fraction_value": 0.01,
+    "currency_symbol": "$",
+    "timezones": ["Pacific/Auckland"],
+    "fiscal_year_start": "04-01",
+    "fiscal_year_end": "03-31",
+    "locale": "en-NZ"
+  },
+  "United States": {
+    "code": "us",
+    "currency": "USD",
+    "currency_fraction": "Cent",
+    "currency_fraction_units": 100,
+    "smallest_currency_fraction_value": 0.01,
+    "currency_symbol": "$",
+    "timezones": [
+      "America/New_York",
+      "America/Chicago",
+      "America/Denver",
+      "America/Los_Angeles"
+    ],
+    "fiscal_year_start": "01-01",
+    "fiscal_year_end": "12-31",
+    "locale": "en-US"
+  },
+  "United Kingdom": {
+    "code": "gb",
+    "currency": "GBP",
+    "currency_fraction": "Penny",
+    "currency_fraction_units": 100,
+    "smallest_currency_fraction_value": 0.01,
+    "currency_symbol": "£",
+    "timezones": ["Europe/London"],
+    "fiscal_year_start": "04-06",
+    "fiscal_year_end": "04-05",
+    "locale": "en-GB"
+  },
+  "Canada": {
+    "code": "ca",
+    "currency": "CAD",
+    "currency_fraction": "Cent",
+    "currency_fraction_units": 100,
+    "smallest_currency_fraction_value": 0.01,
+    "currency_symbol": "$",
+    "timezones": [
+      "America/Toronto",
+      "America/Vancouver",
+      "America/Winnipeg"
+    ],
+    "fiscal_year_start": "01-01",
+    "fiscal_year_end": "12-31",
+    "locale": "en-CA"
+  },
+  "Singapore": {
+    "code": "sg",
+    "currency": "SGD",
+    "currency_fraction": "Cent",
+    "currency_fraction_units": 100,
+    "smallest_currency_fraction_value": 0.01,
+    "currency_symbol": "$",
+    "timezones": ["Asia/Singapore"],
+    "fiscal_year_start": "01-01",
+    "fiscal_year_end": "12-31",
+    "locale": "en-SG"
+  },
+  "India": {
+    "code": "in",
+    "currency": "INR",
+    "currency_fraction": "Paise",
+    "currency_fraction_units": 100,
+    "smallest_currency_fraction_value": 0.01,
+    "currency_symbol": "₹",
+    "timezones": ["Asia/Kolkata"],
+    "fiscal_year_start": "04-01",
+    "fiscal_year_end": "03-31",
+    "locale": "en-IN"
+  }
+}

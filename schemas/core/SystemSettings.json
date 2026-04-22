@@ -84,7 +84,7 @@
       "fieldname": "locale",
       "label": "Locale",
       "fieldtype": "AutoComplete",
-      "default": "en-IN",
+      "default": "en-AU",
       "required": true,
       "allowCustom": true,
       "description": "Set the local code. This is used for number formatting.",
@@ -105,7 +105,7 @@
       "fieldname": "currency",
       "label": "Currency",
       "fieldtype": "AutoComplete",
-      "default": "INR",
+      "default": "AUD",
       "readOnly": true,
       "required": true,
       "section": "Number Display"
@@ -123,7 +123,7 @@
       "fieldname": "countryCode",
       "label": "Country Code",
       "fieldtype": "Data",
-      "default": "in",
+      "default": "au",
       "description": "Country code used to initialize regional settings.",
       "hidden": true
     },

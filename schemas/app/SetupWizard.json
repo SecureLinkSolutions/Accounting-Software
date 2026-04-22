@@ -39,6 +39,7 @@
       "fieldtype": "AutoComplete",
       "placeholder": "Select Country",
       "section": "Locale",
+      "default": "Australia",
       "required": true
     },
     {

@@ -1,0 +1,23 @@
+{
+  "name": "AccountingSettings",
+  "fields": [
+    {
+      "fieldname": "abn",
+      "label": "ABN",
+      "fieldtype": "Data",
+      "placeholder": "12 345 678 901",
+      "description": "Australian Business Number",
+      "section": "Default"
+    }
+  ],
+  "quickEditFields": [
+    "fullname",
+    "email",
+    "companyName",
+    "country",
+    "currency",
+    "fiscalYearStart",
+    "fiscalYearEnd",
+    "abn"
+  ]
+}

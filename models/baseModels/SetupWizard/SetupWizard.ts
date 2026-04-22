@@ -23,6 +23,7 @@ export function getCOAList() {
   return [
     { name: t`Standard Chart of Accounts`, countryCode: '' },
 
+    { countryCode: 'au', name: 'Australia - Chart of Accounts' },
     { countryCode: 'ae', name: 'U.A.E - Chart of Accounts' },
     {
       countryCode: 'ca',
