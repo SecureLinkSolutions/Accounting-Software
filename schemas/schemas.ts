@@ -58,6 +58,11 @@ import tree from './meta/tree.json';
 import ItemGroup from './app/ItemGroup.json';
 import { Schema, SchemaStub } from './types';
 import ItemEnquiry from './app/ItemEnquiry.json';
+import Project from './app/Project.json';
+import ProjectTask from './app/ProjectTask.json';
+import ProjectMilestone from './app/ProjectMilestone.json';
+import Timesheet from './app/Timesheet.json';
+import TimesheetEntry from './app/TimesheetEntry.json';
 
 export const coreSchemas: Schema[] = [
   PatchRun as Schema,
@@ -139,4 +144,9 @@ export const appSchemas: Schema[] | SchemaStub[] = [
   CustomForm as Schema,
   CustomField as Schema,
 
+  Project as Schema,
+  ProjectTask as Schema,
+  ProjectMilestone as Schema,
+  Timesheet as Schema,
+  TimesheetEntry as Schema,
 ];

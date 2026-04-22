@@ -101,6 +101,29 @@ function getInventorySidebar(): SidebarRoot[] {
   ];
 }
 
+function getProjectsSidebar(): SidebarRoot {
+  return {
+    label: t`Projects`,
+    name: 'projects',
+    icon: 'projects',
+    route: '/list/Project',
+    items: [
+      {
+        label: t`Projects`,
+        name: 'project-list',
+        route: '/list/Project',
+        schemaName: 'Project',
+      },
+      {
+        label: t`Timesheets`,
+        name: 'timesheets',
+        route: '/list/Timesheet',
+        schemaName: 'Timesheet',
+      },
+    ],
+  };
+}
+
 function getReportSidebar() {
   return {
     label: t`Reports`,
@@ -259,6 +282,7 @@ function getCompleteSidebar(): SidebarConfig {
       ] as SidebarItem[],
     },
     getReportSidebar(),
+    getProjectsSidebar(),
     getInventorySidebar(),
     getRegionalSidebar(),
     {

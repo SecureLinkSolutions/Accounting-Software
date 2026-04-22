@@ -1,0 +1,57 @@
+{
+  "name": "TimesheetEntry",
+  "label": "Timesheet Entry",
+  "isChild": true,
+  "fields": [
+    {
+      "fieldname": "date",
+      "label": "Date",
+      "fieldtype": "Date",
+      "required": true
+    },
+    {
+      "fieldname": "project",
+      "label": "Project",
+      "fieldtype": "Link",
+      "target": "Project"
+    },
+    {
+      "fieldname": "task",
+      "label": "Task",
+      "fieldtype": "Data",
+      "placeholder": "Task description"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "hours",
+      "label": "Hours",
+      "fieldtype": "Float",
+      "required": true,
+      "default": 0
+    },
+    {
+      "fieldname": "billable",
+      "label": "Billable",
+      "fieldtype": "Check",
+      "default": true
+    },
+    {
+      "fieldname": "hourlyRate",
+      "label": "Hourly Rate",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "amount",
+      "label": "Amount",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "computed": true
+    }
+  ],
+  "tableFields": ["date", "project", "task", "hours", "billable", "amount"],
+  "keywordFields": ["task"]
+}

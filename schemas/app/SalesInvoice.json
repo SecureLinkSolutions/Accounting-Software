@@ -32,6 +32,13 @@
       "section": "Coupons"
     },
     {
+      "fieldname": "project",
+      "label": "Project",
+      "fieldtype": "Link",
+      "target": "Project",
+      "section": "References"
+    },
+    {
       "fieldname": "backReference",
       "label": "Back Reference",
       "fieldtype": "Link",

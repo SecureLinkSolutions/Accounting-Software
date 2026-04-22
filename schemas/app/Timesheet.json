@@ -1,0 +1,77 @@
+{
+  "name": "Timesheet",
+  "label": "Timesheet",
+  "naming": "numberSeries",
+  "isSingle": false,
+  "isSubmittable": true,
+  "fields": [
+    {
+      "fieldname": "numberSeries",
+      "label": "Number Series",
+      "fieldtype": "Link",
+      "target": "NumberSeries",
+      "create": true,
+      "required": true,
+      "default": "TS-",
+      "section": "Default"
+    },
+    {
+      "fieldname": "employee",
+      "label": "Employee",
+      "fieldtype": "Data",
+      "required": true,
+      "placeholder": "Employee name",
+      "section": "Default"
+    },
+    {
+      "fieldname": "project",
+      "label": "Project",
+      "fieldtype": "Link",
+      "target": "Project",
+      "section": "Default"
+    },
+    {
+      "fieldname": "fromDate",
+      "label": "From Date",
+      "fieldtype": "Date",
+      "required": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "toDate",
+      "label": "To Date",
+      "fieldtype": "Date",
+      "section": "Default"
+    },
+    {
+      "fieldname": "entries",
+      "label": "Time Entries",
+      "fieldtype": "Table",
+      "target": "TimesheetEntry",
+      "required": true,
+      "section": "Entries"
+    },
+    {
+      "fieldname": "totalHours",
+      "label": "Total Hours",
+      "fieldtype": "Float",
+      "readOnly": true,
+      "section": "Summary"
+    },
+    {
+      "fieldname": "totalBillableHours",
+      "label": "Billable Hours",
+      "fieldtype": "Float",
+      "readOnly": true,
+      "section": "Summary"
+    },
+    {
+      "fieldname": "totalAmount",
+      "label": "Total Amount",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "section": "Summary"
+    }
+  ],
+  "keywordFields": ["name", "employee", "project"]
+}

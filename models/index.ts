@@ -36,6 +36,9 @@ import { StockLedgerEntry } from './inventory/StockLedgerEntry';
 import { StockMovement } from './inventory/StockMovement';
 import { StockMovementItem } from './inventory/StockMovementItem';
 import { ItemEnquiry } from './baseModels/ItemEnquiry/ItemEnquiry';
+import { Project } from './baseModels/Project/Project';
+import { Timesheet } from './baseModels/Timesheet/Timesheet';
+import { TimesheetEntry } from './baseModels/TimesheetEntry/TimesheetEntry';
 
 export const models = {
   Account,
@@ -76,6 +79,9 @@ export const models = {
   ShipmentItem,
   PurchaseReceipt,
   PurchaseReceiptItem,
+  Project,
+  Timesheet,
+  TimesheetEntry,
 } as ModelMap;
 
 export async function getRegionalModels(

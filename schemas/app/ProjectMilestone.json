@@ -1,0 +1,27 @@
+{
+  "name": "ProjectMilestone",
+  "label": "Project Milestone",
+  "isChild": true,
+  "fields": [
+    {
+      "fieldname": "title",
+      "label": "Title",
+      "fieldtype": "Data",
+      "required": true,
+      "placeholder": "Milestone title"
+    },
+    {
+      "fieldname": "dueDate",
+      "label": "Due Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "completed",
+      "label": "Completed",
+      "fieldtype": "Check",
+      "default": false
+    }
+  ],
+  "tableFields": ["title", "dueDate", "completed"],
+  "keywordFields": ["title"]
+}

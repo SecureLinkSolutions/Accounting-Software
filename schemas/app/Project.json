@@ -1,0 +1,99 @@
+{
+  "name": "Project",
+  "label": "Project",
+  "naming": "manual",
+  "isSingle": false,
+  "fields": [
+    {
+      "fieldname": "name",
+      "label": "Project Name",
+      "fieldtype": "Data",
+      "required": true,
+      "placeholder": "Project Name",
+      "section": "Default"
+    },
+    {
+      "fieldname": "customer",
+      "label": "Customer",
+      "fieldtype": "Link",
+      "target": "Party",
+      "section": "Default"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": [
+        { "value": "Planning", "label": "Planning" },
+        { "value": "Active", "label": "Active" },
+        { "value": "On Hold", "label": "On Hold" },
+        { "value": "Completed", "label": "Completed" }
+      ],
+      "default": "Planning",
+      "required": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "startDate",
+      "label": "Start Date",
+      "fieldtype": "Date",
+      "section": "Default"
+    },
+    {
+      "fieldname": "endDate",
+      "label": "End Date",
+      "fieldtype": "Date",
+      "section": "Default"
+    },
+    {
+      "fieldname": "budget",
+      "label": "Budget",
+      "fieldtype": "Currency",
+      "section": "Default"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Text",
+      "placeholder": "Project description",
+      "section": "Default"
+    },
+    {
+      "fieldname": "tasks",
+      "label": "Tasks",
+      "fieldtype": "Table",
+      "target": "ProjectTask",
+      "section": "Tasks"
+    },
+    {
+      "fieldname": "milestones",
+      "label": "Milestones",
+      "fieldtype": "Table",
+      "target": "ProjectMilestone",
+      "section": "Milestones"
+    },
+    {
+      "fieldname": "totalBilled",
+      "label": "Total Billed",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "section": "Summary"
+    },
+    {
+      "fieldname": "totalExpenses",
+      "label": "Total Expenses",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "section": "Summary"
+    },
+    {
+      "fieldname": "totalHours",
+      "label": "Total Hours",
+      "fieldtype": "Float",
+      "readOnly": true,
+      "section": "Summary"
+    }
+  ],
+  "quickEditFields": ["customer", "status", "startDate", "endDate", "budget"],
+  "keywordFields": ["name", "customer", "status"]
+}

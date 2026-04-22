@@ -1,0 +1,43 @@
+{
+  "name": "ProjectTask",
+  "label": "Project Task",
+  "isChild": true,
+  "fields": [
+    {
+      "fieldname": "title",
+      "label": "Title",
+      "fieldtype": "Data",
+      "required": true,
+      "placeholder": "Task title"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": [
+        { "value": "To Do", "label": "To Do" },
+        { "value": "In Progress", "label": "In Progress" },
+        { "value": "Done", "label": "Done" }
+      ],
+      "default": "To Do"
+    },
+    {
+      "fieldname": "assignee",
+      "label": "Assignee",
+      "fieldtype": "Data",
+      "placeholder": "Assignee name"
+    },
+    {
+      "fieldname": "dueDate",
+      "label": "Due Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Text"
+    }
+  ],
+  "tableFields": ["title", "status", "assignee", "dueDate"],
+  "keywordFields": ["title", "assignee"]
+}
