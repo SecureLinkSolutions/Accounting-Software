@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install dependencies (skip electron-rebuild postinstall)
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --ignore-scripts
+RUN yarn install --ignore-scripts
 RUN yarn rebuild better-sqlite3
 
 # Copy source
