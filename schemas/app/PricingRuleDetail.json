@@ -1,0 +1,11 @@
+{
+  "name": "PricingRuleDetail",
+  "label": "Pricing Rule Detail",
+  "isChild": true,
+  "fields": [
+    { "fieldname": "pricingRule", "label": "Pricing Rule", "fieldtype": "Data" },
+    { "fieldname": "discountPercentage", "label": "Discount %", "fieldtype": "Float" },
+    { "fieldname": "discountAmount", "label": "Discount Amount", "fieldtype": "Currency" }
+  ],
+  "tableFields": ["pricingRule", "discountPercentage"]
+}

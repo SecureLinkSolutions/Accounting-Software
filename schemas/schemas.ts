@@ -1,4 +1,10 @@
 import Account from './app/Account.json';
+import AppliedCouponCodes from './app/AppliedCouponCodes.json';
+import DefaultCashDenominations from './app/DefaultCashDenominations.json';
+import Lead from './app/Lead.json';
+import LoyaltyProgram from './app/LoyaltyProgram.json';
+import PriceList from './app/PriceList.json';
+import PricingRuleDetail from './app/PricingRuleDetail.json';
 import AccountingLedgerEntry from './app/AccountingLedgerEntry.json';
 import AccountingSettings from './app/AccountingSettings.json';
 import Address from './app/Address.json';
@@ -65,6 +71,7 @@ import Timesheet from './app/Timesheet.json';
 import TimesheetEntry from './app/TimesheetEntry.json';
 import BankAccount from './app/BankAccount.json';
 import BankTransaction from './app/BankTransaction.json';
+import ERPNextSyncSettings from './app/ERPNextSyncSettings.json';
 
 export const coreSchemas: Schema[] = [
   PatchRun as Schema,
@@ -154,4 +161,12 @@ export const appSchemas: Schema[] | SchemaStub[] = [
 
   BankAccount as Schema,
   BankTransaction as Schema,
+  ERPNextSyncSettings as Schema,
+
+  AppliedCouponCodes as Schema,
+  DefaultCashDenominations as Schema,
+  Lead as Schema,
+  LoyaltyProgram as Schema,
+  PriceList as Schema,
+  PricingRuleDetail as Schema,
 ];

@@ -1,0 +1,36 @@
+{
+  "name": "ERPNextSyncSettings",
+  "label": "ERPNext Sync Settings",
+  "isSingle": true,
+  "isChild": false,
+  "isSubmittable": false,
+  "fields": [
+    {
+      "fieldname": "isEnabled",
+      "label": "Enable ERPNext Sync",
+      "fieldtype": "Check",
+      "default": false
+    },
+    {
+      "fieldname": "baseURL",
+      "label": "Base URL",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "authToken",
+      "label": "Auth Token",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "dataSyncInterval",
+      "label": "Sync Interval (minutes)",
+      "fieldtype": "Data",
+      "default": "60"
+    },
+    {
+      "fieldname": "deviceID",
+      "label": "Device ID",
+      "fieldtype": "Data"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "DefaultCashDenominations",
+  "label": "Default Cash Denominations",
+  "isChild": true,
+  "fields": [
+    { "fieldname": "denomination", "label": "Denomination", "fieldtype": "Float" },
+    { "fieldname": "count", "label": "Count", "fieldtype": "Int", "default": 0 }
+  ],
+  "tableFields": ["denomination", "count"]
+}

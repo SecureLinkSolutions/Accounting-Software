@@ -63,6 +63,7 @@ export enum ModelNameEnum {
   CustomField = 'CustomField',
   BankAccount = 'BankAccount',
   BankTransaction = 'BankTransaction',
+  ERPNextSyncSettings = 'ERPNextSyncSettings',
 }
 
 export type ModelName = keyof typeof ModelNameEnum;

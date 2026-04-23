@@ -1,0 +1,13 @@
+{
+  "name": "Lead",
+  "label": "Lead",
+  "naming": "manual",
+  "isSingle": false,
+  "fields": [
+    { "fieldname": "name", "label": "Name", "fieldtype": "Data", "required": true },
+    { "fieldname": "email", "label": "Email", "fieldtype": "Data" },
+    { "fieldname": "phone", "label": "Phone", "fieldtype": "Data" },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Data" }
+  ],
+  "keywordFields": ["name", "email"]
+}

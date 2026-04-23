@@ -1,0 +1,12 @@
+{
+  "name": "LoyaltyProgram",
+  "label": "Loyalty Program",
+  "naming": "manual",
+  "isSingle": false,
+  "fields": [
+    { "fieldname": "name", "label": "Name", "fieldtype": "Data", "required": true },
+    { "fieldname": "conversionFactor", "label": "Conversion Factor", "fieldtype": "Float", "default": 1 },
+    { "fieldname": "expiryDuration", "label": "Expiry Duration (days)", "fieldtype": "Int" }
+  ],
+  "keywordFields": ["name"]
+}

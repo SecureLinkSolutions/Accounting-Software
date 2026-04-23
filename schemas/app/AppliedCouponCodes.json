@@ -1,0 +1,11 @@
+{
+  "name": "AppliedCouponCodes",
+  "label": "Applied Coupon Codes",
+  "isChild": true,
+  "fields": [
+    { "fieldname": "coupon", "label": "Coupon", "fieldtype": "Data" },
+    { "fieldname": "couponCode", "label": "Coupon Code", "fieldtype": "Data" },
+    { "fieldname": "pricingRule", "label": "Pricing Rule", "fieldtype": "Data" }
+  ],
+  "tableFields": ["coupon", "couponCode"]
+}
