@@ -3,15 +3,15 @@ FROM node:20
 WORKDIR /app
 
 # Install dependencies (skip electron-rebuild postinstall)
-COPY package*.json ./
-RUN npm ci --ignore-scripts
-RUN npm rebuild better-sqlite3
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --ignore-scripts
+RUN yarn rebuild better-sqlite3
 
 # Copy source
 COPY . .
 
 # Build frontend
-RUN npm run build:web
+RUN yarn build:web
 
 # Runtime config
 ENV NODE_ENV=production
