@@ -36,6 +36,7 @@
     "lodash": "^4.17.23",
     "luxon": "^2.5.2",
     "node-fetch": "2",
+    "plaid": "^25.0.0",
     "pesa": "^1.1.12",
     "source-map-support": "^0.5.21",
     "vue": "^3.2.40",

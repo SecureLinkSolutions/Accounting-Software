@@ -63,6 +63,8 @@ import ProjectTask from './app/ProjectTask.json';
 import ProjectMilestone from './app/ProjectMilestone.json';
 import Timesheet from './app/Timesheet.json';
 import TimesheetEntry from './app/TimesheetEntry.json';
+import BankAccount from './app/BankAccount.json';
+import BankTransaction from './app/BankTransaction.json';
 
 export const coreSchemas: Schema[] = [
   PatchRun as Schema,
@@ -149,4 +151,7 @@ export const appSchemas: Schema[] | SchemaStub[] = [
   ProjectMilestone as Schema,
   Timesheet as Schema,
   TimesheetEntry as Schema,
+
+  BankAccount as Schema,
+  BankTransaction as Schema,
 ];

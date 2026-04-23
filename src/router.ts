@@ -1,3 +1,4 @@
+import Banking from 'src/pages/Banking/Banking.vue';
 import ChartOfAccounts from 'src/pages/ChartOfAccounts.vue';
 import CommonForm from 'src/pages/CommonForm/CommonForm.vue';
 import Dashboard from 'src/pages/Dashboard/Dashboard.vue';
@@ -95,6 +96,11 @@ const routes: RouteRecordRaw[] = [
       default: true,
       edit: (route) => route.query,
     },
+  },
+  {
+    path: '/banking',
+    name: 'Banking',
+    component: Banking,
   },
   {
     path: '/import-wizard',

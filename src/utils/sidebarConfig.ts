@@ -101,6 +101,28 @@ function getInventorySidebar(): SidebarRoot[] {
   ];
 }
 
+function getBankingSidebar(): SidebarRoot {
+  return {
+    label: t`Banking`,
+    name: 'banking',
+    icon: 'bank',
+    route: '/banking',
+    items: [
+      {
+        label: t`Bank Accounts`,
+        name: 'bank-accounts',
+        route: '/list/BankAccount',
+        schemaName: 'BankAccount',
+      },
+      {
+        label: t`Transactions`,
+        name: 'bank-transactions',
+        route: '/banking',
+      },
+    ],
+  };
+}
+
 function getProjectsSidebar(): SidebarRoot {
   return {
     label: t`Projects`,
@@ -283,6 +305,7 @@ function getCompleteSidebar(): SidebarConfig {
     },
     getReportSidebar(),
     getProjectsSidebar(),
+    getBankingSidebar(),
     getInventorySidebar(),
     getRegionalSidebar(),
     {

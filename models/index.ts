@@ -39,6 +39,8 @@ import { ItemEnquiry } from './baseModels/ItemEnquiry/ItemEnquiry';
 import { Project } from './baseModels/Project/Project';
 import { Timesheet } from './baseModels/Timesheet/Timesheet';
 import { TimesheetEntry } from './baseModels/TimesheetEntry/TimesheetEntry';
+import { BankAccount } from './baseModels/BankAccount/BankAccount';
+import { BankTransaction } from './baseModels/BankTransaction/BankTransaction';
 
 export const models = {
   Account,
@@ -82,6 +84,8 @@ export const models = {
   Project,
   Timesheet,
   TimesheetEntry,
+  BankAccount,
+  BankTransaction,
 } as ModelMap;
 
 export async function getRegionalModels(

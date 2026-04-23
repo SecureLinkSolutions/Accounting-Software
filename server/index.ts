@@ -4,10 +4,33 @@ import fs from 'fs-extra';
 import path from 'path';
 import { DatabaseManager } from '../backend/database/manager';
 import { BackendResponse } from '../utils/ipc/types';
+import {
+  Configuration,
+  PlaidApi,
+  PlaidEnvironments,
+  Products,
+  CountryCode,
+} from 'plaid';
 
 const app = express();
 const PORT = parseInt(process.env.PORT || '3000', 10);
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), 'data');
+
+const PLAID_CLIENT_ID = process.env.PLAID_CLIENT_ID ?? '';
+const PLAID_SECRET = process.env.PLAID_SECRET ?? '';
+const PLAID_ENV = (process.env.PLAID_ENV ?? 'sandbox') as keyof typeof PlaidEnvironments;
+
+const plaidConfig = new Configuration({
+  basePath: PlaidEnvironments[PLAID_ENV],
+  baseOptions: {
+    headers: {
+      'PLAID-CLIENT-ID': PLAID_CLIENT_ID,
+      'PLAID-SECRET': PLAID_SECRET,
+    },
+  },
+});
+
+const plaidClient = new PlaidApi(plaidConfig);
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
@@ -162,6 +185,81 @@ app.delete('/api/config/:key', (req, res) => {
   delete config[req.params.key];
   saveConfig(config);
   res.json({ success: true });
+});
+
+app.post('/api/bank/link-token', async (_req, res) => {
+  if (!PLAID_CLIENT_ID || !PLAID_SECRET) {
+    res.status(400).json({ error: 'Plaid credentials not configured. Set PLAID_CLIENT_ID and PLAID_SECRET environment variables.' });
+    return;
+  }
+  try {
+    const response = await plaidClient.linkTokenCreate({
+      user: { client_user_id: 'books-user' },
+      client_name: 'Frappe Books',
+      products: [Products.Transactions],
+      country_codes: [CountryCode.Au],
+      language: 'en',
+    });
+    res.json({ link_token: response.data.link_token });
+  } catch (err) {
+    res.status(500).json({ error: String(err) });
+  }
+});
+
+app.post('/api/bank/exchange-token', async (req, res) => {
+  const { public_token, account_id } = req.body as { public_token: string; account_id: string };
+  try {
+    const exchangeResponse = await plaidClient.itemPublicTokenExchange({ public_token });
+    const accessToken = exchangeResponse.data.access_token;
+
+    const accountsResponse = await plaidClient.accountsGet({ access_token: accessToken });
+    const account = accountsResponse.data.accounts.find((a) => a.account_id === account_id);
+
+    res.json({
+      access_token: accessToken,
+      account: account
+        ? {
+            account_id: account.account_id,
+            name: account.name,
+            type: account.type,
+            subtype: account.subtype,
+            mask: account.mask,
+            institution: accountsResponse.data.item.institution_id ?? '',
+            balance: account.balances.current ?? 0,
+            currency: account.balances.iso_currency_code ?? 'AUD',
+          }
+        : null,
+    });
+  } catch (err) {
+    res.status(500).json({ error: String(err) });
+  }
+});
+
+app.post('/api/bank/sync', async (req, res) => {
+  const { access_token, cursor } = req.body as { access_token: string; cursor?: string };
+  try {
+    let added: unknown[] = [];
+    let modified: unknown[] = [];
+    let removed: unknown[] = [];
+    let nextCursor = cursor ?? '';
+    let hasMore = true;
+
+    while (hasMore) {
+      const response = await plaidClient.transactionsSync({
+        access_token,
+        cursor: nextCursor || undefined,
+      });
+      added = added.concat(response.data.added);
+      modified = modified.concat(response.data.modified);
+      removed = removed.concat(response.data.removed);
+      nextCursor = response.data.next_cursor;
+      hasMore = response.data.has_more;
+    }
+
+    res.json({ added, modified, removed, next_cursor: nextCursor });
+  } catch (err) {
+    res.status(500).json({ error: String(err) });
+  }
 });
 
 const distPath = path.join(__dirname, '../dist');

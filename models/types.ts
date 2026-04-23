@@ -61,6 +61,8 @@ export enum ModelNameEnum {
   Location = 'Location',
   CustomForm = 'CustomForm',
   CustomField = 'CustomField',
+  BankAccount = 'BankAccount',
+  BankTransaction = 'BankTransaction',
 }
 
 export type ModelName = keyof typeof ModelNameEnum;

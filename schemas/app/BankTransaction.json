@@ -1,0 +1,82 @@
+{
+  "name": "BankTransaction",
+  "label": "Bank Transaction",
+  "naming": "autoincrement",
+  "isSingle": false,
+  "fields": [
+    {
+      "fieldname": "date",
+      "label": "Date",
+      "fieldtype": "Date",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "bankAccount",
+      "label": "Bank Account",
+      "fieldtype": "Link",
+      "target": "BankAccount",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Data",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "amount",
+      "label": "Amount",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "transactionType",
+      "label": "Type",
+      "fieldtype": "Select",
+      "options": ["Credit", "Debit"],
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": ["Unmatched", "Matched", "Ignored"],
+      "default": "Unmatched",
+      "section": "Default"
+    },
+    {
+      "fieldname": "matchedDocType",
+      "label": "Matched Document Type",
+      "fieldtype": "Data",
+      "section": "Matching"
+    },
+    {
+      "fieldname": "matchedDocName",
+      "label": "Matched Document",
+      "fieldtype": "Data",
+      "section": "Matching"
+    },
+    {
+      "fieldname": "journalEntry",
+      "label": "Journal Entry",
+      "fieldtype": "Link",
+      "target": "JournalEntry",
+      "readOnly": true,
+      "section": "Matching"
+    },
+    {
+      "fieldname": "plaidTransactionId",
+      "label": "Plaid Transaction ID",
+      "fieldtype": "Data",
+      "readOnly": true,
+      "hidden": true
+    }
+  ],
+  "quickEditFields": ["date", "bankAccount", "description", "amount", "transactionType", "status", "matchedDocType", "matchedDocName"],
+  "keywordFields": ["description", "bankAccount"]
+}

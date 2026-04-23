@@ -1,0 +1,86 @@
+{
+  "name": "BankAccount",
+  "label": "Bank Account",
+  "naming": "manual",
+  "isSingle": false,
+  "fields": [
+    {
+      "fieldname": "name",
+      "label": "Account Name",
+      "fieldtype": "Data",
+      "required": true,
+      "placeholder": "e.g. Business Cheque",
+      "section": "Default"
+    },
+    {
+      "fieldname": "institution",
+      "label": "Bank",
+      "fieldtype": "Data",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "accountType",
+      "label": "Account Type",
+      "fieldtype": "Data",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "accountNumber",
+      "label": "Account Number (last 4)",
+      "fieldtype": "Data",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "currency",
+      "label": "Currency",
+      "fieldtype": "Data",
+      "readOnly": true,
+      "default": "AUD",
+      "section": "Default"
+    },
+    {
+      "fieldname": "currentBalance",
+      "label": "Current Balance",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "lastSynced",
+      "label": "Last Synced",
+      "fieldtype": "Datetime",
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "isActive",
+      "label": "Active",
+      "fieldtype": "Check",
+      "default": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "plaidAccessToken",
+      "label": "Plaid Access Token",
+      "fieldtype": "Data",
+      "hidden": true
+    },
+    {
+      "fieldname": "plaidAccountId",
+      "label": "Plaid Account ID",
+      "fieldtype": "Data",
+      "hidden": true
+    },
+    {
+      "fieldname": "plaidCursor",
+      "label": "Plaid Sync Cursor",
+      "fieldtype": "Data",
+      "hidden": true
+    }
+  ],
+  "quickEditFields": ["institution", "accountType", "accountNumber", "currency", "currentBalance", "lastSynced", "isActive"],
+  "keywordFields": ["name", "institution"]
+}
