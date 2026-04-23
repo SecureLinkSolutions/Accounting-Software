@@ -6,12 +6,16 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - books_data:/data
+      - iron_ledger_data:/data
     environment:
       - NODE_ENV=production
       - DATA_DIR=/data
       - PORT=3000
+      # Plaid bank feed (optional — remove if not using bank feeds)
+      - PLAID_CLIENT_ID=${PLAID_CLIENT_ID:-}
+      - PLAID_SECRET=${PLAID_SECRET:-}
+      - PLAID_ENV=${PLAID_ENV:-sandbox}
     restart: unless-stopped
 
 volumes:
-  books_data:
+  iron_ledger_data:
