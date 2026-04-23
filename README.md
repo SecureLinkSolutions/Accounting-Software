@@ -1,193 +1,192 @@
-<div align="center" markdown="1">
-<br/>
+# Iron Ledger
 
-<img src="https://frappe.io/files/books.png" alt="Frappe Books logo" width="80"/>
+**Modern accounting software for small and medium businesses.**
 
-<br/>
+Built by SecureLink Solutions — a full-featured, double-entry accounting system that runs as a desktop app or a self-hosted web application.
 
-<h1>Frappe Books</h1>
+---
 
-**Modern Accounting Made Simple**
+## Features
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/frappe/books)](https://github.com/frappe/books/releases)
-![Platforms](https://img.shields.io/badge/platform-mac%2C%20windows%2C%20linux-yellowgreen)
-[![Publish](https://github.com/frappe/books/actions/workflows/publish.yml/badge.svg)](https://github.com/frappe/books/actions/workflows/publish.yml)
+### Core Accounting
+- **Double-entry accounting** with a full Chart of Accounts
+- **Journal Entries** for manual ledger adjustments
+- **Tax Templates** with configurable tax rates
+- **BAS Report** for Australian GST compliance
 
-</div>
+### Sales
+- Sales Quotes → Sales Invoices workflow
+- Sales Payments tracking
+- Customer management
+- Loyalty program and coupon code support
+- Pricing rules
 
-<div align="center">
-<img src="https://user-images.githubusercontent.com/29507195/207267857-4ae48890-3fb2-4046-80cf-3256b46c72a0.png" alt="Frappe Books Preview"/>
-</div>
-<br />
-<div align="center">
-	<a href="https://frappe.io/books">Website</a>
-	-
-	<a href="https://docs.frappe.io/books">Documentation</a>
-</div>
+### Purchases
+- Purchase Invoices and Purchase Payments
+- Supplier management
 
-## Frappe Books
+### Margin Tracking
+- **Cost Price** per item with auto-computed **Margin %**
+- **Set Price from Margin** toggle — enter a target margin and the selling rate is calculated automatically
+- Invoice edit view shows **Total Profit** and **Total Margin %** across all line items (not included in customer-facing print output)
 
-Frappe Books is an open-source accounting software aimed at simplifying financial management for businesses. With its clean and user-friendly interface, it streamlines accounting tasks for small and medium-sized enterprises, offering a seamless solution for modern businesses to manage their finances with ease.
+### Projects
+- **Projects** with status tracking (Planning / Active / On Hold / Completed), budgets, and customer linking
+- **Tasks** and **Milestones** as child records on each project
+- **Timesheets** with line-level time entries, billable hours, hourly rates, and computed totals
+- Projects linkable directly on Sales and Purchase Invoices
+- Per-project rollup of total billed, total expenses, and total hours
 
-<details>
-<summary>Screenshots</summary>
-<br/>
-<img  alt="Pos" src="https://github.com/user-attachments/assets/f75116b4-cf5f-45ee-9927-ba380fa56a46" />
-    <br/><br/>
-    <img  alt="General Ledger" src="https://github.com/user-attachments/assets/58d8bcdf-1576-4008-b010-7054fb64a12d" />
-    <br/><br/>
-    <img  alt="Profit and Loss" src="https://github.com/user-attachments/assets/11bd67d1-d808-496b-ac4d-ef68c18b9419" />
+### Bank Feed (Plaid)
+- Connect bank accounts via **Plaid Link** with a single click
+- **Sync transactions** using Plaid's cursor-based incremental sync
+- Transaction reconciliation with three actions per transaction:
+  - **Match** — link to an existing Payment, Journal Entry, or Invoice
+  - **Create JE** — auto-create a draft Journal Entry and open it for completion
+  - **Ignore** — dismiss transactions that need no action (restorable)
+- Connected accounts show current balance and last-synced time
 
-</details>
+### Inventory *(optional module)*
+- Stock Movements, Shipments, and Purchase Receipts
+- Stock Ledger and Stock Balance reports
+- Serial numbers and batch tracking
+- Auto-create shipment/purchase receipt on invoice submit
 
-### Motivation
+### Reports
+- General Ledger
+- Profit and Loss
+- Balance Sheet
+- Trial Balance
+- BAS (Business Activity Statement)
+- Stock Ledger / Stock Balance *(inventory module)*
 
-Frappe Books addresses a market gap where small businesses face expensive, complex accounting tools. It offers an intuitive, open-source solution that combines simplicity with essential features, empowering businesses to manage finances effectively—even offline.
+### Setup & Customization
+- Import Wizard for bulk data import
+- Print Templates with a visual template builder
+- Customize Form — add custom fields to any document type
+- Number Series configuration
 
-### Key Features
+---
 
-- **Dashboard**: Provides an overview of key financial data and performance metrics.
-- **Point of Sale**: Simplifies retail transactions with an integrated POS system for easy sales processing.
-- **Works Offline**: Enables users to continue working without an internet connection and sync later.
-- **Double-entry accounting**: Ensures accurate financial tracking by recording each transaction in two accounts.
-- **Entries**
-  - **Invoicing**: Allows businesses to create and manage professional invoices effortlessly.
-  - **Billing**: Billing processes by generating bills and tracking payments.
-  - **Payments**: Records and tracks payments received and made.
-  - **Journal Entries**: Records financial transactions in the general ledger with detailed notes and adjustments.
-- **Financial Reports**
-  - **General Ledger**: Centralized record of all financial transactions, providing a comprehensive view of accounts.
-  - **Profit and Loss Statement**: Summarizes revenues, costs, and expenses to show business profitability.
-  - **Balance Sheet**: Displays a company’s assets, liabilities, and equity at a specific point in time.
-  - **Trial Balance**: Verifies the accuracy of accounting records by ensuring that debits and credits are balanced.
-    <br/>
+## Tech Stack
 
-### Under the Hood
+| Layer | Technology |
+|---|---|
+| Frontend | Vue 3 + TypeScript |
+| Desktop | Electron |
+| Web server | Node.js + Express |
+| Database | SQLite (via `better-sqlite3`) |
+| ORM | Fyo (built-in) |
+| Bank feeds | Plaid API |
 
-- **Vue.js**: In Frappe Books, Vue.js powers the front-end, enabling a reactive and component-based UI. It ensures seamless interactions and dynamic updates, giving users a modern, responsive experience.
+---
 
-- **Electron**: Electron is used to package Frappe Books as a standalone desktop application, allowing it to run offline and provide a native-like experience across Windows, macOS, and Linux.
+## Running as a Web Application
 
-- **SQLite**: Frappe Books uses SQLite as its local database. All financial data, transactions, and configurations are stored securely in an SQLite file on the user's machine.
+Iron Ledger can run as a self-hosted web server without Electron.
 
-## Production Setup
+### Requirements
 
-### Manual
+- Node.js v20+
+- npm or yarn
 
-Download and install the latest release for your platform from the [releases
-page](https://github.com/frappe/books/releases) .
-
-### Using Homebrew (for MacOS and Linux)
-
-```zsh
-brew install --cask frappe-books
-```
-
-### Via Flatpak (Linux)
-
-<a href='https://flathub.org/apps/io.frappe.books'>
-    <img width='120' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
-</a>
-
-## Development Setup
-
-### Pre-requisites
-
-To get the dev environment up and running you need to first set up Node.js `v20.18.1` and npm. For this, we suggest using
-[nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-Next, you will need to install [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable).
-
-### Clone and Run
-
-Once you are through the Pre-requisites, you can run the following commands to
-setup Frappe Books for development and building:
+### Install
 
 ```bash
-# clone the repository
-git clone https://github.com/frappe/books.git
-
-# change directory
-cd books
-
-# install dependencies
-yarn
+git clone https://github.com/securelinksolutions/accounting-software.git
+cd accounting-software
+npm install
 ```
 
-To run Frappe Books in development mode (with hot reload, etc):
+### Start the server
 
 ```bash
-# start the electron app
-yarn dev
+npm run start:server
 ```
 
-**Note: First Boot**
+The server starts on port `3000` by default. Set environment variables to configure:
 
-When you run `yarn dev` electron will run immediately but the UI will take a
-couple of seconds to render this because of how dev mode works. Each file is
-individually served by the dev server. And there are many files that have to be
-sent.
+| Variable | Default | Description |
+|---|---|---|
+| `PORT` | `3000` | HTTP port |
+| `DATA_DIR` | `./data` | Directory where `.books.db` files are stored |
+| `PLAID_CLIENT_ID` | — | Plaid API client ID (required for bank feeds) |
+| `PLAID_SECRET` | — | Plaid API secret (required for bank feeds) |
+| `PLAID_ENV` | `sandbox` | Plaid environment: `sandbox`, `development`, or `production` |
 
-**Note: Debug Electron Main Process**
+Then open `http://localhost:3000` in your browser.
 
-When in dev mode electron runs with the `--inspect` flag which allows an
-external debugger to connect to port 5858. You can use chrome for this by
-visiting `chrome://inspect` while Frappe Books is running in dev mode.
+---
 
-See more [here](https://www.electronjs.org/docs/latest/tutorial/debugging-main-process#external-debuggers).
+## Running as a Desktop App (Electron)
 
-#### Build
-
-To build Frappe Books and create an installer:
+### Development mode
 
 ```bash
-# start the electron app
-yarn build
+npm run dev
 ```
 
-**Note: Build Target**
-By default the above command will build for your computer's operating system and
-architecture. To build for other environments (example: for linux from a windows
-computer) check the _Building_ section at
-[electron.build/cli](https://www.electron.build/cli).
+The Electron window opens immediately; the UI takes a few seconds to appear on first boot while the dev server compiles assets.
 
-So to build for linux you could use the `--linux` flag like so: `yarn build --linux`.
+**Debug the main process:** Electron runs with `--inspect` on port `5858` in dev mode. Connect via `chrome://inspect`.
 
-## Want to Just Try Out or Contribute?
+### Build an installer
 
-If you want to contribute to Frappe Books, please check our [Contribution Guidelines](https://github.com/frappe/books/blob/master/.github/CONTRIBUTING.md). There are many ways you can contribute even if you don't code:
+```bash
+npm run build
+```
 
-1. If you find any issues, no matter how small (even typos), you can [raise an issue](https://github.com/frappe/books/issues/new) to inform us.
-2. You can help us with language support by [contributing translations](https://github.com/frappe/books/wiki/Contributing-Translations).
-3. If you're an ardent user you can tell us what you would like to see.
-4. If you have accounting requirements, you can become an ardent user. 🙂
+This produces a platform-specific installer in `dist_electron/bundled/`. To cross-compile (e.g. Linux from macOS):
 
-If you want to contribute code then you can fork this repo, make changes and raise a PR. ([see how to](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork))
+```bash
+npm run build -- --linux
+```
 
-## Translation Contributors
+---
 
-| Language              | Contributors                                                                                                                                                                                                                                      |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Arabic                | [taha2002](https://github.com/taha2002), [Faridget](https://github.com/faridget), [Osama Muhammed](https://github.com/osama1998H)                                                                                                                 |
-| Albanian              | [xoniks](https://github.com/xoniks)                                                                                                                                                                                                               |
-| Catalan               | Dídac E. Jiménez                                                                                                                                                                                                                                  |
-| Chinese - Simplified  | [wcxu21](https://github.com/wcxu21), [wolone](https://github.com/wolone), [Ji Qu](https://github.com/winkidney)                                                                                                                                   |
-| Chinese - Traditional | [Ethan Deng](https://github.com/ethandengs)                                                                                                                                                                                                       |
-| Danish                | [Tummas Joensen](https://github.com/slang123)                                                                                                                                                                                                     |
-| Dutch                 | [RijckAlex](https://github.com/RijckAlex), [Stan M](https://github.com/stxm)                                                                                                                                                                      |
-| French                | [DeepL](https://www.deepl.com/), [mael-chouteau](https://github.com/mael-chouteau), [joandreux](https://github.com/joandreux)                                                                                                                     |
-| German                | [DeepL](https://www.deepl.com/), [barredterra](https://github.com/barredterra), [promexio](https://github.com/promexio), [C2H6-383](https://github.com/C2H6-383), [0xflotus](https://github.com/0xflotus), [Tim](https://github.com/Rocket-Quack) |
-| Gujarati              | [dhruvilxcode](https://github.com/dhruvilxcode), [4silvertooth](https://github.com/4silvertooth)                                                                                                                                                  |
-| Hindi                 | [bnsinghgit](https://github.com/bnsinghgit)                                                                                                                                                                                                       |
-| Indonesian            | [Aji Prakoso](https://github.com/jipraks)                                                                                                                                                                                                         |
-| Korean                | [Isaac-Kwon](https://github.com/Isaac-Kwon)                                                                                                                                                                                                       |
-| Portuguese            | [DeepL](https://www.deepl.com/), [Valdir Amaral](https://github.com/valdir-amaral)                                                                                                                                                                |
-| Spanish               | [talmax1124](https://github.com/talmax1124), [delbertf](https://github.com/delbertf), [Ignacio Chemes](https://github.com/ignaciochemes)                                                                                                          |
-| Swedish               | [papplo](https://github.com/papplo), [Crims-on](https://github.com/Crims-on)                                                                                                                                                                      |
-| Turkish               | Eyuq, [XTechnology-TR](https://github.com/XTechnology-TR)                                                                                                                                                                                         |
+## Bank Feed Setup
 
-## Learn and connect
+Bank feeds use the [Plaid API](https://plaid.com/docs/). To enable them:
 
-- [Telegram Group](https://t.me/frappebooks): Used for discussions and decisions regarding everything Frappe Books.
-- [GitHub Discussions](https://github.com/frappe/books/discussions): Used for discussions around a specific topic.
-- [Documentation](https://docs.frappe.io/books): Official documentation for more details.
+1. Create a Plaid developer account at [dashboard.plaid.com](https://dashboard.plaid.com)
+2. Obtain your `client_id` and `secret` from the Plaid dashboard
+3. Set the environment variables before starting the server:
+
+```bash
+PLAID_CLIENT_ID=your_client_id \
+PLAID_SECRET=your_secret \
+PLAID_ENV=sandbox \
+npm run start:server
+```
+
+4. Navigate to **Banking → Transactions** in the app and click **Connect Bank**
+
+In `sandbox` mode you can use Plaid's test credentials to connect a demo bank account without real banking credentials.
+
+---
+
+## Project Structure
+
+```
+/
+├── main/               # Electron main process
+├── models/             # Fyo document models (business logic, formulas)
+│   └── baseModels/     # Core models (Invoice, Item, Party, Project, BankAccount, …)
+├── schemas/            # JSON schema definitions for all document types
+├── server/             # Express web server (index.ts)
+├── src/
+│   ├── pages/          # Vue page components
+│   │   ├── Banking/    # Bank feed reconciliation UI
+│   │   ├── Dashboard/  # Charts and summary widgets
+│   │   └── …
+│   ├── components/     # Shared Vue components
+│   └── utils/          # Sidebar config, routing helpers, filters
+├── reports/            # Report definitions and exporters
+└── translations/       # i18n translation files
+```
+
+---
+
+## License
+
+AGPL-3.0-only
