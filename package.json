@@ -1,10 +1,9 @@
 {
-  "name": "frappe-books",
+  "name": "iron-ledger",
   "version": "0.37.0",
   "description": "Simple book-keeping app for everyone",
   "author": {
-    "name": "Frappe Technologies Pvt. Ltd.",
-    "email": "hello@frappe.io"
+    "name": "SecureLink Solutions"
   },
   "scripts": {
     "dev": "node build/scripts/dev.mjs",
@@ -98,9 +97,9 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "homepage": "https://frappe.io/books",
+  "homepage": "https://github.com/securelinksolutions/accounting-software",
   "repository": {
-    "url": "https://github.com/frappe/books"
+    "url": "https://github.com/securelinksolutions/accounting-software"
   },
   "license": "AGPL-3.0-only"
 }

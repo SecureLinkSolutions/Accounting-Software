@@ -195,7 +195,7 @@ app.post('/api/bank/link-token', async (_req, res) => {
   try {
     const response = await plaidClient.linkTokenCreate({
       user: { client_user_id: 'books-user' },
-      client_name: 'Frappe Books',
+      client_name: 'Iron Ledger',
       products: [Products.Transactions],
       country_codes: [CountryCode.Au],
       language: 'en',
@@ -272,5 +272,5 @@ if (fs.existsSync(distPath)) {
 
 app.listen(PORT, '0.0.0.0', () => {
   // eslint-disable-next-line no-console
-  console.log(`Frappe Books server on port ${PORT}, data: ${DATA_DIR}`);
+  console.log(`Iron Ledger server on port ${PORT}, data: ${DATA_DIR}`);
 });

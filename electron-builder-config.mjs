@@ -14,9 +14,9 @@ const root = dirname; // redundant, but is meant to keep with the previous line
 const buildDirPath = path.join(root, 'dist_electron', 'build');
 const packageDirPath = path.join(root, 'dist_electron', 'bundled');
 
-const frappeBooksConfig = {
-  productName: 'Frappe Books',
-  appId: 'io.frappe.books',
+const ironLedgerConfig = {
+  productName: 'Iron Ledger',
+  appId: 'com.securelinksolutions.ironledger',
   artifactName: '${productName}-v${version}-${os}-${arch}.${ext}',
   asarUnpack: '**/*.node',
   extraResources: [
@@ -46,7 +46,7 @@ const frappeBooksConfig = {
     publish: ['github'],
   },
   win: {
-    publisherName: 'Frappe Technologies Pvt. Ltd.',
+    publisherName: 'SecureLink Solutions',
     artifactName: '${productName}-v${version}-windows-${arch}.${ext}',
     signDlls: true,
     icon: 'build/icon.ico',
@@ -92,4 +92,4 @@ const frappeBooksConfig = {
   },
 };
 
-export default frappeBooksConfig;
+export default ironLedgerConfig;
