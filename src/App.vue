@@ -66,11 +66,6 @@ import { Shortcuts } from './utils/shortcuts';
 import { routeTo } from './utils/ui';
 import { useKeys } from './utils/vueUtils';
 import { setDarkMode } from 'src/utils/theme';
-import {
-  registerInstanceToERPNext,
-  updateERPNSyncSettings,
-} from './utils/erpnextSync';
-import { ERPNextSyncSettings } from 'models/baseModels/ERPNextSyncSettings/ERPNextSyncSettings';
 import { ErrorLogEnum } from 'fyo/telemetry/types';
 
 enum Screen {
@@ -213,57 +208,6 @@ export default defineComponent({
 
       await initializeInstance(filePath, false, countryCode, fyo);
       await updatePrintTemplates(fyo);
-
-      const syncSettingsDoc = (await fyo.doc.getDoc(
-        ModelNameEnum.ERPNextSyncSettings
-      )) as ERPNextSyncSettings;
-
-      const baseURL = syncSettingsDoc.baseURL;
-      const token = syncSettingsDoc.authToken;
-      const enableERPNextSync =
-        fyo.singles.AccountingSettings?.enableERPNextSync;
-
-      if (enableERPNextSync && baseURL && token) {
-        try {
-          await registerInstanceToERPNext(fyo);
-          await updateERPNSyncSettings(fyo);
-          await ipc.initScheduler(
-            `${fyo.singles.ERPNextSyncSettings?.dataSyncInterval as string}m`
-          );
-        } catch (error) {
-          const errorMessage =
-            error instanceof Error ? error.message : String(error);
-
-          try {
-            const existing = await fyo.db.getAll(
-              ErrorLogEnum.IntegrationErrorLog,
-              {
-                filters: {
-                  error: errorMessage,
-                },
-                limit: 1,
-              }
-            );
-
-            if (!existing.length) {
-              await fyo.doc
-                .getNewDoc(ErrorLogEnum.IntegrationErrorLog, {
-                  error: errorMessage,
-                  data: JSON.stringify({
-                    instance: fyo.singles.ERPNextSyncSettings?.deviceID,
-                    operation: 'register_instance',
-                    trigger: 'showSetupWizardOrDesk',
-                    baseURL: baseURL,
-                  }),
-                })
-                .sync();
-            }
-          } catch (logError) {
-            throw logError;
-          }
-          showToast({ message: 'Connection Failed', type: 'error' });
-        }
-      }
 
       await this.setDesk(filePath);
     },
