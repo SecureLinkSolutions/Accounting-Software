@@ -1,15 +1,7 @@
 <template>
   <div
-    class="
-      py-2
-      h-full
-      flex
-      justify-between
-      flex-col
-      bg-gray-25
-      dark:bg-gray-900
-      relative
-    "
+    class="py-2 h-full flex justify-between flex-col relative"
+    style="background: var(--color-brand-dark, #1E3670);"
     :class="{
       'window-drag': platform !== 'Windows',
     }"
@@ -24,14 +16,8 @@
       >
         <h6
           data-testid="company-name"
-          class="
-            font-semibold
-            dark:text-gray-200
-            whitespace-nowrap
-            overflow-auto
-            no-scrollbar
-            select-none
-          "
+          class="font-semibold whitespace-nowrap overflow-auto no-scrollbar select-none"
+          style="color: rgba(255,255,255,0.95);"
         >
           {{ companyName }}
         </h6>
@@ -40,20 +26,14 @@
       <!-- Sidebar Items -->
       <div v-for="group in groups" :key="group.label">
         <div
-          class="
-            px-4
-            flex
-            items-center
-            cursor-pointer
-            hover:bg-gray-100
-            dark:hover:bg-gray-875
-            h-10
-          "
+          class="px-4 flex items-center cursor-pointer h-10 rounded-sm mx-1 transition-colors"
           :style="
-            isGroupActive(group) && !group.items
-              ? 'background: var(--color-brand-light-bg); border-inline-start: 4px solid var(--color-brand)'
-              : ''
+            isGroupActive(group)
+              ? 'background: rgba(255,255,255,0.15); border-inline-start: 3px solid rgba(255,255,255,0.9);'
+              : 'border-inline-start: 3px solid transparent;'
           "
+          @mouseenter="$event.currentTarget.style.background = isGroupActive(group) ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.07)'"
+          @mouseleave="$event.currentTarget.style.background = isGroupActive(group) ? 'rgba(255,255,255,0.15)' : ''"
           @click="routeToSidebarItem(group)"
         >
           <Icon
@@ -61,16 +41,16 @@
             :name="group.icon"
             :size="group.iconSize || '18'"
             :height="group.iconHeight ?? 0"
-            :active="!!isGroupActive(group)"
-            :darkMode="darkMode"
+            :active="false"
+            :darkMode="true"
             :class="isGroupActive(group) && !group.items ? '-ms-1' : ''"
           />
           <div
-            class="ms-2 text-lg text-gray-700 dark:text-gray-300"
+            class="ms-2 text-base font-medium"
             :style="
-              isGroupActive(group) && !group.items
-                ? 'color: var(--color-brand)'
-                : ''
+              isGroupActive(group)
+                ? 'color: rgba(255,255,255,1);'
+                : 'color: rgba(255,255,255,0.7);'
             "
           >
             {{ group.label }}
@@ -82,27 +62,17 @@
           <div
             v-for="item in group.items"
             :key="item.label"
-            class="
-              text-base
-              h-10
-              ps-10
-              cursor-pointer
-              flex
-              items-center
-              hover:bg-gray-100
-              dark:hover:bg-gray-875
-            "
-            :class="isItemActive(item) ? '' : 'text-gray-700 dark:text-gray-400'"
+            class="h-9 ps-10 cursor-pointer flex items-center rounded-sm mx-1 text-sm transition-colors"
             :style="
               isItemActive(item)
-                ? 'background: var(--color-brand-light-bg); color: var(--color-brand); border-inline-start: 4px solid var(--color-brand)'
-                : ''
+                ? 'background: rgba(255,255,255,0.15); color: rgba(255,255,255,1); border-inline-start: 3px solid rgba(255,255,255,0.9); font-weight: 600;'
+                : 'color: rgba(255,255,255,0.65); border-inline-start: 3px solid transparent;'
             "
+            @mouseenter="$event.currentTarget.style.background = isItemActive(item) ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.07)'"
+            @mouseleave="$event.currentTarget.style.background = isItemActive(item) ? 'rgba(255,255,255,0.15)' : ''"
             @click="routeToSidebarItem(item)"
           >
-            <p :style="isItemActive(item) ? 'margin-left: -4px' : ''">
-              {{ item.label }}
-            </p>
+            <p>{{ item.label }}</p>
           </div>
         </div>
       </div>
@@ -112,15 +82,8 @@
     <div class="window-no-drag flex flex-col gap-2 py-2 px-4">
       <button
         data-testid="change-db"
-        class="
-          flex
-          text-sm text-gray-600
-          dark:text-gray-500
-          hover:text-gray-800
-          dark:hover:text-gray-400
-          gap-1
-          items-center
-        "
+        class="flex text-sm gap-1 items-center"
+        style="color: rgba(255,255,255,0.5);"
         @click="$emit('change-db-file')"
       >
         <feather-icon name="database" class="h-4 w-4 flex-shrink-0" />
@@ -129,7 +92,8 @@
 
       <p
         v-if="showDevMode"
-        class="text-xs text-gray-500 select-none cursor-pointer"
+        class="text-xs select-none cursor-pointer"
+        style="color: rgba(255,255,255,0.4);"
         @click="showDevMode = false"
         title="Open dev tools with Ctrl+Shift+I"
       >
@@ -139,19 +103,8 @@
 
     <!-- Hide Sidebar Button -->
     <button
-      class="
-        absolute
-        bottom-0
-        end-0
-        text-gray-600
-        dark:text-gray-500
-        hover:bg-gray-100
-        dark:hover:bg-gray-875
-        rounded
-        p-1
-        m-4
-        rtl-rotate-180
-      "
+      class="absolute bottom-0 end-0 rounded p-1 m-4 rtl-rotate-180"
+      style="color: rgba(255,255,255,0.5);"
       @click="() => toggleSidebar()"
     >
       <feather-icon name="chevrons-left" class="w-4 h-4" />
