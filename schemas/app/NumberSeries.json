@@ -70,6 +70,10 @@
         {
           "value": "Timesheet",
           "label": "Timesheet"
+        },
+        {
+          "value": "Expense",
+          "label": "Expense"
         }
       ],
       "default": "-",

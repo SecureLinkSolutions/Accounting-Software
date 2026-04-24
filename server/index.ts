@@ -262,11 +262,21 @@ app.post('/api/bank/sync', async (req, res) => {
   }
 });
 
+const BRAND_STYLE = `<style>:root{--color-brand:#2B4C8C;--color-brand-dark:#1E3670;--color-brand-light:#5F81C0;--color-brand-light-bg:#EEF2F9;}
+[data-theme="dark"]{--color-brand:#5F81C0;--color-brand-dark:#88A3D3;--color-brand-light:#2B4C8C;--color-brand-light-bg:#152654;}</style>`;
+
 const distPath = path.join(__dirname, '../dist');
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
   app.get('*', (_req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'));
+    try {
+      let html = fs.readFileSync(path.join(distPath, 'index.html'), 'utf-8');
+      html = html.replace('</head>', `${BRAND_STYLE}</head>`);
+      res.setHeader('Content-Type', 'text/html');
+      res.send(html);
+    } catch {
+      res.sendFile(path.join(distPath, 'index.html'));
+    }
   });
 }
 

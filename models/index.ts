@@ -42,6 +42,7 @@ import { TimesheetEntry } from './baseModels/TimesheetEntry/TimesheetEntry';
 import { BankAccount } from './baseModels/BankAccount/BankAccount';
 import { BankTransaction } from './baseModels/BankTransaction/BankTransaction';
 import { ERPNextSyncSettings } from './baseModels/ERPNextSyncSettings/ERPNextSyncSettings';
+import { Expense } from './baseModels/Expense/Expense';
 
 export const models = {
   Account,
@@ -88,6 +89,7 @@ export const models = {
   BankAccount,
   BankTransaction,
   ERPNextSyncSettings,
+  Expense,
 } as ModelMap;
 
 export async function getRegionalModels(

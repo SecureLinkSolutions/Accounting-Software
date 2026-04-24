@@ -64,6 +64,7 @@ export enum ModelNameEnum {
   BankAccount = 'BankAccount',
   BankTransaction = 'BankTransaction',
   ERPNextSyncSettings = 'ERPNextSyncSettings',
+  Expense = 'Expense',
 }
 
 export type ModelName = keyof typeof ModelNameEnum;

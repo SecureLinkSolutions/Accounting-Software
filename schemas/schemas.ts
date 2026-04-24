@@ -72,6 +72,7 @@ import TimesheetEntry from './app/TimesheetEntry.json';
 import BankAccount from './app/BankAccount.json';
 import BankTransaction from './app/BankTransaction.json';
 import ERPNextSyncSettings from './app/ERPNextSyncSettings.json';
+import Expense from './app/Expense.json';
 
 export const coreSchemas: Schema[] = [
   PatchRun as Schema,
@@ -162,6 +163,7 @@ export const appSchemas: Schema[] | SchemaStub[] = [
   BankAccount as Schema,
   BankTransaction as Schema,
   ERPNextSyncSettings as Schema,
+  Expense as Schema,
 
   AppliedCouponCodes as Schema,
   DefaultCashDenominations as Schema,

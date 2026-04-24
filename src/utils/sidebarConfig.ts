@@ -146,6 +146,23 @@ function getProjectsSidebar(): SidebarRoot {
   };
 }
 
+function getExpensesSidebar(): SidebarRoot {
+  return {
+    label: t`Expenses`,
+    name: 'expenses',
+    icon: 'purchase',
+    route: '/list/Expense',
+    items: [
+      {
+        label: t`Expenses`,
+        name: 'expense-list',
+        route: '/list/Expense',
+        schemaName: 'Expense',
+      },
+    ],
+  };
+}
+
 function getReportSidebar() {
   return {
     label: t`Reports`,
@@ -303,6 +320,7 @@ function getCompleteSidebar(): SidebarConfig {
         },
       ] as SidebarItem[],
     },
+    getExpensesSidebar(),
     getReportSidebar(),
     getProjectsSidebar(),
     getBankingSidebar(),

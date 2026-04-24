@@ -1,0 +1,161 @@
+{
+  "name": "Expense",
+  "label": "Expense",
+  "naming": "numberSeries",
+  "isSubmittable": true,
+  "fields": [
+    {
+      "fieldname": "name",
+      "label": "Expense No",
+      "fieldtype": "Data",
+      "required": true,
+      "readOnly": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "numberSeries",
+      "label": "Number Series",
+      "fieldtype": "Link",
+      "target": "NumberSeries",
+      "create": true,
+      "required": true,
+      "default": "EXP-",
+      "section": "Default"
+    },
+    {
+      "fieldname": "date",
+      "label": "Date",
+      "fieldtype": "Date",
+      "required": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "category",
+      "label": "Category",
+      "fieldtype": "Select",
+      "options": [
+        { "value": "Advertising & Marketing", "label": "Advertising & Marketing" },
+        { "value": "Bank Fees", "label": "Bank Fees" },
+        { "value": "Equipment & Tools", "label": "Equipment & Tools" },
+        { "value": "Insurance", "label": "Insurance" },
+        { "value": "IT & Software", "label": "IT & Software" },
+        { "value": "Meals & Entertainment", "label": "Meals & Entertainment" },
+        { "value": "Motor Vehicle", "label": "Motor Vehicle" },
+        { "value": "Office Supplies", "label": "Office Supplies" },
+        { "value": "Professional Services", "label": "Professional Services" },
+        { "value": "Rent & Occupancy", "label": "Rent & Occupancy" },
+        { "value": "Staff Training", "label": "Staff Training" },
+        { "value": "Travel", "label": "Travel" },
+        { "value": "Utilities", "label": "Utilities" },
+        { "value": "Wages & Salaries", "label": "Wages & Salaries" },
+        { "value": "Other", "label": "Other" }
+      ],
+      "required": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Text",
+      "placeholder": "What was this expense for?",
+      "section": "Default"
+    },
+    {
+      "fieldname": "isBusinessExpense",
+      "label": "Business Expense",
+      "fieldtype": "Check",
+      "default": true,
+      "section": "Default"
+    },
+    {
+      "fieldname": "expenseAccount",
+      "label": "Expense Account",
+      "fieldtype": "Link",
+      "target": "Account",
+      "required": true,
+      "section": "Accounts"
+    },
+    {
+      "fieldname": "paymentAccount",
+      "label": "Paid From",
+      "fieldtype": "Link",
+      "target": "Account",
+      "required": true,
+      "section": "Accounts"
+    },
+    {
+      "fieldname": "amount",
+      "label": "Amount (excl. GST)",
+      "fieldtype": "Currency",
+      "required": true,
+      "section": "Accounts"
+    },
+    {
+      "fieldname": "hasGst",
+      "label": "Includes GST (10%)",
+      "fieldtype": "Check",
+      "default": false,
+      "section": "Accounts"
+    },
+    {
+      "fieldname": "gstAccount",
+      "label": "GST Input Tax Credit Account",
+      "fieldtype": "Link",
+      "target": "Account",
+      "section": "Accounts"
+    },
+    {
+      "fieldname": "gstAmount",
+      "label": "GST Amount",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "computed": true,
+      "section": "Accounts"
+    },
+    {
+      "fieldname": "totalAmount",
+      "label": "Total (incl. GST)",
+      "fieldtype": "Currency",
+      "readOnly": true,
+      "computed": true,
+      "section": "Accounts"
+    },
+    {
+      "fieldname": "project",
+      "label": "Project",
+      "fieldtype": "Link",
+      "target": "Project",
+      "section": "References"
+    },
+    {
+      "fieldname": "attachment",
+      "label": "Receipt / Attachment",
+      "fieldtype": "Attachment",
+      "section": "References"
+    },
+    {
+      "fieldname": "journalEntry",
+      "label": "Journal Entry",
+      "fieldtype": "Link",
+      "target": "JournalEntry",
+      "readOnly": true,
+      "section": "References"
+    }
+  ],
+  "quickEditFields": [
+    "date",
+    "category",
+    "description",
+    "isBusinessExpense",
+    "expenseAccount",
+    "paymentAccount",
+    "amount",
+    "hasGst",
+    "gstAccount",
+    "gstAmount",
+    "totalAmount",
+    "project",
+    "attachment"
+  ],
+  "keywordFields": ["name", "category", "description"]
+}
