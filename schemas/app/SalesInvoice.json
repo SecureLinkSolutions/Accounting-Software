@@ -25,13 +25,6 @@
       "section": "Default"
     },
     {
-      "fieldname": "coupons",
-      "label": "Coupons",
-      "fieldtype": "Table",
-      "target": "AppliedCouponCodes",
-      "section": "Coupons"
-    },
-    {
       "fieldname": "project",
       "label": "Project",
       "fieldtype": "Link",
@@ -83,34 +76,6 @@
       "target": "SalesInvoice",
       "label": "Return Against",
       "section": "References"
-    },
-    {
-      "fieldname": "loyaltyProgram",
-      "fieldtype": "Link",
-      "target": "LoyaltyProgram",
-      "label": "Loyalty Program",
-      "section": "Loyalty Points Redemption",
-      "readOnly": true
-    },
-    {
-      "fieldname": "availableLoyaltyPoints",
-      "fieldtype": "Int",
-      "label": "Available Loyalty Points",
-      "readOnly": true,
-      "section": "Loyalty Points Redemption"
-    },
-    {
-      "fieldname": "redeemLoyaltyPoints",
-      "fieldtype": "Check",
-      "default": false,
-      "label": "Redeem Loyalty Points",
-      "section": "Loyalty Points Redemption"
-    },
-    {
-      "fieldname": "loyaltyPoints",
-      "fieldtype": "Int",
-      "label": "Loyalty Points",
-      "section": "Loyalty Points Redemption"
     },
     {
       "fieldname": "isPOS",

@@ -7,7 +7,7 @@
 }
 
 * {
-  outline-color: theme('colors.pink.400');
+  outline-color: theme('colors.brand.500');
   font-variation-settings: 'slnt' 0deg;
 }
 .italic {
@@ -70,6 +70,9 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 :root {
+  --color-brand: #3A63AC;
+  --color-brand-dark: #2B4C8C;
+  --color-brand-light: #5F81C0;
   --w-form: 600px;
   --w-app: 1200px;
   --w-sidebar: 14rem;

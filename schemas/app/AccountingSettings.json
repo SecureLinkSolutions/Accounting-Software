@@ -129,20 +129,6 @@
       "section": "Features"
     },
     {
-      "fieldname": "enableLoyaltyProgram",
-      "label": "Enable Loyalty Program",
-      "fieldtype": "Check",
-      "default": false,
-      "section": "Features"
-    },
-    {
-      "fieldname": "enableCouponCode",
-      "label": "Enable Coupon Code",
-      "fieldtype": "Check",
-      "default": false,
-      "section": "Features"
-    },
-    {
       "fieldname": "enableitemGroup",
       "label": "Enable Item Group",
       "fieldtype": "Check",

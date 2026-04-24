@@ -51,7 +51,7 @@
           "
           :class="
             isGroupActive(group) && !group.items
-              ? 'bg-gray-100 dark:bg-gray-875 border-s-4 border-gray-800 dark:border-gray-100'
+              ? 'bg-brand-50 dark:bg-gray-875 border-s-4 border-brand-600 dark:border-brand-400'
               : ''
           "
           @click="routeToSidebarItem(group)"
@@ -69,7 +69,7 @@
             class="ms-2 text-lg text-gray-700"
             :class="
               isGroupActive(group) && !group.items
-                ? 'text-gray-900 dark:text-gray-25'
+                ? 'text-brand-700 dark:text-brand-300'
                 : 'dark:text-gray-300'
             "
           >
@@ -94,7 +94,7 @@
             "
             :class="
               isItemActive(item)
-                ? 'bg-gray-100 dark:bg-gray-875 text-gray-900 dark:text-gray-100 border-s-4 border-gray-800 dark:border-gray-100'
+                ? 'bg-brand-50 dark:bg-gray-875 text-brand-700 dark:text-brand-300 border-s-4 border-brand-600 dark:border-brand-400'
                 : 'text-gray-700 dark:text-gray-400'
             "
             @click="routeToSidebarItem(item)"
