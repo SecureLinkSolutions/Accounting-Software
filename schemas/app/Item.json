@@ -116,8 +116,7 @@
       "target": "Account",
       "placeholder": "Income Account",
       "section": "Accounts",
-      "create": true,
-      "required": true
+      "create": true
     },
     {
       "fieldname": "tax",
@@ -142,8 +141,7 @@
       "target": "Account",
       "placeholder": "Expense Account",
       "section": "Accounts",
-      "create": true,
-      "required": true
+      "create": true
     },
     {
       "fieldname": "purchaseTax",
