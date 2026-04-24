@@ -214,6 +214,7 @@ export function getActionsForDoc(doc?: Doc): Action[] {
         label: d.label,
         component: d.component,
         action: d.action,
+        type: d.type,
       };
     });
 }

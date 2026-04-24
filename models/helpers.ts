@@ -181,17 +181,20 @@ export function getMakeInvoiceAction(
     | ModelNameEnum.PurchaseReceipt
     | ModelNameEnum.SalesQuote
 ): Action {
-  let label = fyo.t`Sales Invoice`;
+  let label = fyo.t`Convert to Invoice`;
   if (schemaName === ModelNameEnum.PurchaseReceipt) {
     label = fyo.t`Purchase Invoice`;
+  } else if (schemaName === ModelNameEnum.Shipment) {
+    label = fyo.t`Sales Invoice`;
   }
 
   return {
     label,
-    group: fyo.t`Create`,
+    group: label,
+    type: schemaName === ModelNameEnum.SalesQuote ? 'primary' : 'secondary',
     condition: (doc: Doc) => {
       if (schemaName === ModelNameEnum.SalesQuote) {
-        return doc.isSubmitted;
+        return doc.isSubmitted && !doc.notInserted;
       } else {
         return doc.isSubmitted && !doc.backReference;
       }
@@ -242,10 +245,11 @@ export function getSalesQuoteAction(fyo: Fyo): Action {
 
 export function getMakePaymentAction(fyo: Fyo): Action {
   return {
-    label: fyo.t`Payment`,
-    group: fyo.t`Create`,
+    label: fyo.t`Record Payment`,
+    group: fyo.t`Record Payment`,
+    type: 'primary',
     condition: (doc: Doc) =>
-      doc.isSubmitted && !(doc.outstandingAmount as Money).isZero(),
+      doc.isSubmitted && !!(doc.outstandingAmount as Money)?.gt(fyo.pesa(0)),
     action: async (doc, router) => {
       const schemaName = doc.schema.name;
       const payment = (doc as Invoice).getPayment();

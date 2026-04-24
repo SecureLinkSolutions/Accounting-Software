@@ -3,6 +3,7 @@
     class="rounded-md flex justify-center items-center text-sm"
     :disabled="disabled"
     :class="_class"
+    :style="type === 'primary' && background ? 'background: var(--color-brand); color: #fff;' : ''"
     v-bind="$attrs"
   >
     <slot></slot>
@@ -40,8 +41,6 @@ export default defineComponent({
       return {
         'opacity-50 cursor-not-allowed pointer-events-none': this.disabled,
         'text-white': this.type === 'primary',
-        'bg-brand-600 hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-600':
-          this.type === 'primary' && this.background,
         'text-gray-700 dark:text-gray-200': this.type !== 'primary',
         'bg-gray-200 dark:bg-gray-900':
           this.type !== 'primary' && this.background,

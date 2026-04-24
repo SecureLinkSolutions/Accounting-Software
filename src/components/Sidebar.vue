@@ -49,9 +49,9 @@
             dark:hover:bg-gray-875
             h-10
           "
-          :class="
+          :style="
             isGroupActive(group) && !group.items
-              ? 'bg-brand-50 dark:bg-gray-875 border-s-4 border-brand-600 dark:border-brand-400'
+              ? 'background: var(--color-brand-light-bg); border-inline-start: 4px solid var(--color-brand)'
               : ''
           "
           @click="routeToSidebarItem(group)"
@@ -66,11 +66,11 @@
             :class="isGroupActive(group) && !group.items ? '-ms-1' : ''"
           />
           <div
-            class="ms-2 text-lg text-gray-700"
-            :class="
+            class="ms-2 text-lg text-gray-700 dark:text-gray-300"
+            :style="
               isGroupActive(group) && !group.items
-                ? 'text-brand-700 dark:text-brand-300'
-                : 'dark:text-gray-300'
+                ? 'color: var(--color-brand)'
+                : ''
             "
           >
             {{ group.label }}
@@ -92,10 +92,11 @@
               hover:bg-gray-100
               dark:hover:bg-gray-875
             "
-            :class="
+            :class="isItemActive(item) ? '' : 'text-gray-700 dark:text-gray-400'"
+            :style="
               isItemActive(item)
-                ? 'bg-brand-50 dark:bg-gray-875 text-brand-700 dark:text-brand-300 border-s-4 border-brand-600 dark:border-brand-400'
-                : 'text-gray-700 dark:text-gray-400'
+                ? 'background: var(--color-brand-light-bg); color: var(--color-brand); border-inline-start: 4px solid var(--color-brand)'
+                : ''
             "
             @click="routeToSidebarItem(item)"
           >
@@ -107,42 +108,8 @@
       </div>
     </div>
 
-    <!-- Report Issue and DB Switcher -->
+    <!-- DB Switcher -->
     <div class="window-no-drag flex flex-col gap-2 py-2 px-4">
-      <button
-        class="
-          flex
-          text-sm text-gray-600
-          dark:text-gray-500
-          hover:text-gray-800
-          dark:hover:text-gray-400
-          gap-1
-          items-center
-        "
-        @click="openDocumentation"
-      >
-        <feather-icon name="help-circle" class="h-4 w-4 flex-shrink-0" />
-        <p>
-          {{ t`Help` }}
-        </p>
-      </button>
-
-      <button
-        class="
-          flex
-          text-sm text-gray-600
-          dark:text-gray-500
-          hover:text-gray-800
-          dark:hover:text-gray-400
-          gap-1
-          items-center
-        "
-        @click="viewShortcuts = true"
-      >
-        <feather-icon name="command" class="h-4 w-4 flex-shrink-0" />
-        <p>{{ t`Shortcuts` }}</p>
-      </button>
-
       <button
         data-testid="change-db"
         class="
@@ -158,24 +125,6 @@
       >
         <feather-icon name="database" class="h-4 w-4 flex-shrink-0" />
         <p>{{ t`Change DB` }}</p>
-      </button>
-
-      <button
-        class="
-          flex
-          text-sm text-gray-600
-          dark:text-gray-500
-          hover:text-gray-800
-          dark:hover:text-gray-400
-          gap-1
-          items-center
-        "
-        @click="() => reportIssue()"
-      >
-        <feather-icon name="flag" class="h-4 w-4 flex-shrink-0" />
-        <p>
-          {{ t`Report Issue` }}
-        </p>
       </button>
 
       <p
@@ -208,32 +157,23 @@
       <feather-icon name="chevrons-left" class="w-4 h-4" />
     </button>
 
-    <Modal :open-modal="viewShortcuts" @closemodal="viewShortcuts = false">
-      <ShortcutsHelper class="w-form" />
-    </Modal>
   </div>
 </template>
 <script lang="ts">
-import { reportIssue } from 'src/errorHandling';
 import { fyo } from 'src/initFyo';
 import { languageDirectionKey, shortcutsKey } from 'src/utils/injectionKeys';
-import { docsPathRef } from 'src/utils/refs';
 import { getSidebarConfig } from 'src/utils/sidebarConfig';
 import { SidebarConfig, SidebarItem, SidebarRoot } from 'src/utils/types';
 import { routeTo, toggleSidebar } from 'src/utils/ui';
 import { defineComponent, inject } from 'vue';
 import router from '../router';
 import Icon from './Icon.vue';
-import Modal from './Modal.vue';
-import ShortcutsHelper from './ShortcutsHelper.vue';
 
 const COMPONENT_NAME = 'Sidebar';
 
 export default defineComponent({
   components: {
     Icon,
-    Modal,
-    ShortcutsHelper,
   },
   props: {
     darkMode: { type: Boolean, default: false },
@@ -249,13 +189,11 @@ export default defineComponent({
     return {
       companyName: '',
       groups: [],
-      viewShortcuts: false,
       activeGroup: null,
       showDevMode: false,
     } as {
       companyName: string;
       groups: SidebarConfig;
-      viewShortcuts: boolean;
       activeGroup: null | SidebarRoot;
       showDevMode: boolean;
     };
@@ -275,13 +213,6 @@ export default defineComponent({
       this.setActiveGroup();
     });
 
-    this.shortcuts?.shift.set(COMPONENT_NAME, ['KeyH'], () => {
-      if (document.body === document.activeElement) {
-        this.toggleSidebar();
-      }
-    });
-    this.shortcuts?.set(COMPONENT_NAME, ['F1'], () => this.openDocumentation());
-
     this.showDevMode = this.fyo.store.isDevelopment;
   },
   unmounted() {
@@ -289,11 +220,7 @@ export default defineComponent({
   },
   methods: {
     routeTo,
-    reportIssue,
     toggleSidebar,
-    openDocumentation() {
-      ipc.openLink('https://docs.frappe.io/' + docsPathRef.value);
-    },
     setActiveGroup() {
       const { fullPath } = this.$router.currentRoute.value;
       const fallBackGroup = this.activeGroup;

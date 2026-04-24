@@ -26,23 +26,22 @@ export class SalesQuote extends Invoice {
   }
 
   async getInvoice(): Promise<Invoice | null> {
-    if (!this.isSubmitted) {
-      return null;
-    }
-
     const schemaName = ModelNameEnum.SalesInvoice;
     const defaults = (this.fyo.singles.Defaults as Defaults) ?? {};
     const terms = defaults.salesInvoiceTerms ?? '';
     const numberSeries = defaults.salesInvoiceNumberSeries ?? undefined;
 
+    const quoteDict = this.getValidDict(false, true);
     const data: DocValueMap = {
-      ...this.getValidDict(false, true),
+      ...quoteDict,
+      name: undefined,
       date: new Date().toISOString(),
       terms,
       numberSeries,
       quote: this.name,
       items: [],
       submitted: false,
+      cancelled: false,
     };
 
     const invoice = this.fyo.doc.getNewDoc(schemaName, data) as Invoice;
@@ -54,6 +53,7 @@ export class SalesQuote extends Invoice {
       return null;
     }
 
+    await invoice.sync();
     return invoice;
   }
 

@@ -70,9 +70,10 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 :root {
-  --color-brand: #3A63AC;
-  --color-brand-dark: #2B4C8C;
+  --color-brand: #2B4C8C;
+  --color-brand-dark: #1E3670;
   --color-brand-light: #5F81C0;
+  --color-brand-light-bg: #EEF2F9;
   --w-form: 600px;
   --w-app: 1200px;
   --w-sidebar: 14rem;

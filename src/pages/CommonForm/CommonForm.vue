@@ -55,17 +55,25 @@
           class="w-4 h-4"
         ></feather-icon>
       </Button>
-      <DropdownWithActions
-        v-for="group of groupedActions"
-        :key="group.label"
-        :type="group.type"
-        :actions="group.actions"
-      >
-        <p v-if="group.group">
+      <template v-for="group of groupedActions" :key="group.label">
+        <!-- Single-action named group: render as a direct button -->
+        <Button
+          v-if="group.group && group.actions.length === 1"
+          :type="group.type"
+          @click="group.actions[0].action(doc, $router)"
+        >
           {{ group.group }}
-        </p>
-        <feather-icon v-else name="more-horizontal" class="w-4 h-4" />
-      </DropdownWithActions>
+        </Button>
+        <!-- Multi-action groups or ungrouped: render as dropdown -->
+        <DropdownWithActions
+          v-else
+          :type="group.type"
+          :actions="group.actions"
+        >
+          <p v-if="group.group">{{ group.group }}</p>
+          <feather-icon v-else name="more-horizontal" class="w-4 h-4" />
+        </DropdownWithActions>
+      </template>
       <Button v-if="doc?.canSave" type="primary" @click="sync">
         {{ t`Save` }}
       </Button>
