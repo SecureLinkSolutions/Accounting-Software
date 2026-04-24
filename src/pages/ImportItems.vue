@@ -103,6 +103,19 @@ const TYPE_MAP: Record<string, string> = {
 };
 
 const NUMERIC_FIELDS = new Set(['rate', 'costPrice', 'openingQuantity', 'lowStockAlert']);
+const DATE_FIELDS = new Set(['openingQuantityDate']);
+
+function parseDate(val: string): string | null {
+  // Handle DD/MM/YYYY and DD-MM-YYYY
+  const dmyMatch = val.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
+  if (dmyMatch) {
+    const [, d, m, y] = dmyMatch;
+    return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+  }
+  // Handle YYYY-MM-DD passthrough
+  if (/^\d{4}-\d{2}-\d{2}$/.test(val)) return val;
+  return null;
+}
 const BOOL_FIELDS = new Set(['salesPriceIncludesTax', 'purchaseCostIncludesTax']);
 const LINK_FIELDS: Record<string, string> = {
   incomeAccount: 'Account',
@@ -227,6 +240,9 @@ export default defineComponent({
             } else if (NUMERIC_FIELDS.has(fieldname)) {
               const num = parseFloat(val.replace(/,/g, ''));
               if (!isNaN(num)) data[fieldname] = num;
+            } else if (DATE_FIELDS.has(fieldname)) {
+              const parsed = parseDate(val);
+              if (parsed) data[fieldname] = parsed;
             } else if (LINK_FIELDS[fieldname]) {
               const targetSchema = LINK_FIELDS[fieldname];
               if (await this.linkExists(targetSchema, val)) {
