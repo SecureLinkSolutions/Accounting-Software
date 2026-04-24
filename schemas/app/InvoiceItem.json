@@ -25,7 +25,7 @@
     },
     {
       "fieldname": "rate",
-      "label": "Rate",
+      "label": "Unit Price (excl. GST)",
       "fieldtype": "Currency",
       "required": true
     },
@@ -98,7 +98,7 @@
     },
     {
       "fieldname": "amount",
-      "label": "Amount",
+      "label": "Amount (excl. GST)",
       "fieldtype": "Currency",
       "readOnly": true
     },
@@ -129,7 +129,7 @@
     },
     {
       "fieldname": "itemTaxedTotal",
-      "label": "Taxed Amount",
+      "label": "Total (incl. GST)",
       "fieldtype": "Currency",
       "readOnly": false,
       "computed": true
@@ -167,7 +167,7 @@
       "readOnly": true
     }
   ],
-  "tableFields": ["item", "tax", "qty", "rate", "amount"],
+  "tableFields": ["item", "tax", "quantity", "rate", "amount"],
   "keywordFields": ["item", "tax"],
   "quickEditFields": [
     "item",

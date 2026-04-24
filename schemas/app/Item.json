@@ -85,13 +85,13 @@
     },
     {
       "fieldname": "costPrice",
-      "label": "Cost Price",
+      "label": "Cost Price (excl. GST)",
       "section": "Details",
       "fieldtype": "Currency"
     },
     {
       "fieldname": "rate",
-      "label": "Rate",
+      "label": "Default Rate (excl. GST)",
       "section": "Details",
       "fieldtype": "Currency"
     },
