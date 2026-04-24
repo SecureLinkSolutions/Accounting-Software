@@ -163,7 +163,7 @@ app.post('/api/file/save', async (req, res) => {
   res.json({ success: true });
 });
 
-app.delete('/api/file/delete', async (req, res) => {
+app.post('/api/file/delete', async (req, res) => {
   const { filePath } = req.body as { filePath: string };
   res.json(await handleResponse(() => fs.unlink(filePath)));
 });
