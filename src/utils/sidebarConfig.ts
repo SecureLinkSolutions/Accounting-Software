@@ -349,6 +349,11 @@ function getCompleteSidebar(): SidebarConfig {
           route: '/import-wizard',
         },
         {
+          label: t`Import Products`,
+          name: 'import-items',
+          route: '/import-items',
+        },
+        {
           label: t`Print Templates`,
           name: 'print-template',
           route: `/list/PrintTemplate/${t`Print Templates`}`,

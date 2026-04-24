@@ -12,17 +12,17 @@
     },
     {
       "fieldname": "name",
-      "label": "Item Name",
+      "label": "Product/Service Name",
       "fieldtype": "Data",
-      "placeholder": "Item Name",
+      "placeholder": "Product/Service Name",
       "section": "Default",
       "required": true
     },
     {
       "fieldname": "itemCode",
-      "label": "Item Code",
+      "label": "SKU",
       "fieldtype": "Data",
-      "placeholder": "Item Code",
+      "placeholder": "SKU / Item Code",
       "section": "Default"
     },
     {
@@ -38,18 +38,9 @@
       "label": "Purpose",
       "fieldtype": "Select",
       "options": [
-        {
-          "value": "Purchases",
-          "label": "Purchases"
-        },
-        {
-          "value": "Sales",
-          "label": "Sales"
-        },
-        {
-          "value": "Both",
-          "label": "Both"
-        }
+        { "value": "Purchases", "label": "Purchases" },
+        { "value": "Sales", "label": "Sales" },
+        { "value": "Both", "label": "Both" }
       ],
       "required": true,
       "section": "Default",
@@ -63,14 +54,9 @@
       "default": "Product",
       "section": "Default",
       "options": [
-        {
-          "value": "Product",
-          "label": "Product"
-        },
-        {
-          "value": "Service",
-          "label": "Service"
-        }
+        { "value": "Product", "label": "Product" },
+        { "value": "Service", "label": "Service" },
+        { "value": "Non-inventory", "label": "Non-inventory" }
       ]
     },
     {
@@ -85,13 +71,13 @@
     },
     {
       "fieldname": "costPrice",
-      "label": "Cost Price (excl. GST)",
+      "label": "Purchase Cost (excl. GST)",
       "section": "Details",
       "fieldtype": "Currency"
     },
     {
       "fieldname": "rate",
-      "label": "Default Rate (excl. GST)",
+      "label": "Sales Price / Rate (excl. GST)",
       "section": "Details",
       "fieldtype": "Currency"
     },
@@ -111,39 +97,69 @@
     },
     {
       "fieldname": "description",
-      "label": "Description",
-      "placeholder": "Item Description",
+      "label": "Sales Description",
+      "placeholder": "Sales Description",
+      "section": "Details",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "purchaseDescription",
+      "label": "Purchase Description",
+      "placeholder": "Purchase Description",
       "section": "Details",
       "fieldtype": "Text"
     },
     {
       "fieldname": "incomeAccount",
-      "label": "Sales Acc.",
+      "label": "Income Account",
       "fieldtype": "Link",
       "target": "Account",
-      "placeholder": "Income",
-      "section": "Accounts",
-      "create": true,
-      "required": true
-    },
-    {
-      "fieldname": "expenseAccount",
-      "label": "Purchase Acc.",
-      "fieldtype": "Link",
-      "target": "Account",
-      "placeholder": "Expense",
+      "placeholder": "Income Account",
       "section": "Accounts",
       "create": true,
       "required": true
     },
     {
       "fieldname": "tax",
-      "label": "Tax",
+      "label": "Tax on Sales",
       "fieldtype": "Link",
       "target": "Tax",
       "section": "Accounts",
       "create": true,
-      "placeholder": "Tax"
+      "placeholder": "Tax on Sales"
+    },
+    {
+      "fieldname": "salesPriceIncludesTax",
+      "label": "Price/Rate Includes Tax",
+      "fieldtype": "Check",
+      "default": false,
+      "section": "Accounts"
+    },
+    {
+      "fieldname": "expenseAccount",
+      "label": "Expense Account",
+      "fieldtype": "Link",
+      "target": "Account",
+      "placeholder": "Expense Account",
+      "section": "Accounts",
+      "create": true,
+      "required": true
+    },
+    {
+      "fieldname": "purchaseTax",
+      "label": "Tax on Purchases",
+      "fieldtype": "Link",
+      "target": "Tax",
+      "section": "Accounts",
+      "create": true,
+      "placeholder": "Tax on Purchases"
+    },
+    {
+      "fieldname": "purchaseCostIncludesTax",
+      "label": "Purchase Cost Includes Tax",
+      "fieldtype": "Check",
+      "default": false,
+      "section": "Accounts"
     },
     {
       "fieldname": "hsnCode",
@@ -165,6 +181,31 @@
       "fieldtype": "Check",
       "section": "Inventory",
       "default": false
+    },
+    {
+      "fieldname": "openingQuantity",
+      "label": "Quantity On Hand",
+      "fieldtype": "Float",
+      "section": "Inventory"
+    },
+    {
+      "fieldname": "lowStockAlert",
+      "label": "Low Stock Alert",
+      "fieldtype": "Float",
+      "section": "Inventory"
+    },
+    {
+      "fieldname": "inventoryAssetAccount",
+      "label": "Inventory Asset Account",
+      "fieldtype": "Link",
+      "target": "Account",
+      "section": "Inventory"
+    },
+    {
+      "fieldname": "openingQuantityDate",
+      "label": "Quantity as-of Date",
+      "fieldtype": "Date",
+      "section": "Inventory"
     },
     {
       "fieldname": "hasBatch",
@@ -215,12 +256,12 @@
     "for",
     "tax",
     "description",
+    "purchaseDescription",
     "incomeAccount",
     "expenseAccount",
     "barcode",
     "hsnCode",
-    "trackItem",
-    "uom"
+    "trackItem"
   ],
   "keywordFields": ["name", "itemType", "for"]
 }
